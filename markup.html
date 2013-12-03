@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Icon Fonts</title>
+<style>
+	.icon {
+		color: blue;
+	}
+
+	@font-face {
+		font-family: icomoon;
+		src:url('fonts/icomoon.eot');
+		src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+			url('fonts/icomoon.ttf') format('truetype'),
+			url('fonts/icomoon.woff') format('woff'),
+			url('fonts/icomoon.svg#icomoon') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	.icon-critical-text .icon {
+		display: none;
+	}
+	.supports-fontface.icomoon .icon-critical-text .icon {
+		display: inline-block;
+	}
+
+	.icon-critical-icon label,
+	.supports-fontface.icomoon .icon-critical-text label {
+		/* visually hide but accessible (h5bp.com) */
+		border: 0;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+
+	.supports-fontface.icomoon .icon:before {
+		font-family: icomoon;
+	}
+	/* Icons */
+	.supports-fontface.icomoon .icon-twitter:before {
+		content: "\e604";
+	}
+	.supports-fontface.icomoon .icon-google-plus:before {
+		content: "\e600";
+	}
+	.supports-fontface.icomoon .icon-facebook:before {
+		content: "\e602";
+	}
+	.supports-fontface.icomoon .icon-feed:before {
+		content: "\e605";
+	}
+
+	/* Optional Fallback glyph (not recommended unless very well supported http://unicode.johnholtripley.co.uk/ instead consider using a bitmap) */
+	.icon-critical-icon .icon-hamburger:before {
+		content: "\2261"; /* Hamburger */
+		font-size: 2em;
+		line-height: .5;
+	}
+	.icon-critical-icon .icon-hamburger-img:before {
+		content: "";
+		font-size: inherit;
+		background-image: url('fonts/png/hamburger.png');
+		background-repeat: no-repeat;
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+	}
+	.supports-fontface.icomoon .icon-hamburger:before {
+		font-size: inherit;
+		content: "\e601";
+		background-image: none;
+		line-height: inherit;
+	}
+</style>
+<script src="faceoff.js"></script>
+<script src="fontfaceonload.js"></script>
+<script>
+window.onload = function() {
+	console.log( 'onload' );
+
+	FontFaceOnload( 'icomoon', {
+		glyphs: '\uE600\uE601\uE602\uE605',
+		success: function() {
+			document.documentElement.className += ' icomoon';
+		}
+	});
+};
+</script>
+</head>
+<body>
+	<h2>Critical Icons with Fallback Text</h2>
+	<p>Doesn’t show supplementary text, but must show fallback text without the icon. Supplementary text is still available to screen readers.<p>
+
+	<span class="icon-critical-text">
+		<!-- requires an element for aria-hidden -->
+		<span class="icon icon-twitter" aria-hidden="true"></span>
+		<label>Twitter</label>
+	</span>
+	<span class="icon-critical-text">
+		<!-- requires an element for aria-hidden -->
+		<span class="icon icon-facebook" aria-hidden="true"></span>
+		<label>Facebook</label>
+	</span>
+	<span class="icon-critical-text">
+		<!-- requires an element for aria-hidden -->
+		<span class="icon icon-google-plus" aria-hidden="true"></span>
+		<label>Google Plus</label>
+	</span>
+	<span class="icon-critical-text">
+		<!-- requires an element for aria-hidden -->
+		<span class="icon icon-feed" aria-hidden="true"></span>
+		<label>RSS Feed</label>
+	</span>
+
+	<h3>Failed experiments:</h3>
+	<ul>
+		<li>Eliminate the label element and clip to just show the icon. Requires us to know the width of each glyph. Easier to just keep the label.</li>
+	</ul>
+
+	<h2>Critical Icons with Fallback Icon</h2>
+	<p>Doesn’t show supplementary text, must show fallback icon without the primary icon. This can be a background image or a Unicode glyph. Supplementary text is still available to screen readers.<p>
+
+	<h3>Fallback to Glyph</h3>
+	<span class="icon-critical-icon">
+		<span class="icon icon-hamburger" aria-hidden="true"></span>
+		<label>Menu</label>
+	</span>
+
+	<h3>Fallback to Image</h3>
+	<p>Fixed colors, must know the size of the glyph, requires `background-size` to resize.</p>
+	<span class="icon-critical-icon">
+		<span class="icon icon-hamburger icon-hamburger-img" aria-hidden="true"></span>
+		<label>Menu</label>
+	</span>
+
+	<h3>Failed experiments:</h3>
+	<ul>
+		<li>In an attempt to remove reliance on :before/:after, we could just put the icon character in the <code>&lt;span class="icon"&gt;</code> content.  But in order to replace the content with a fallback glyph we need it in CSS.</li>
+	</ul>
+
+	<h2>Decorative Icon without Fallback</h2>
+	<p>Shows supplementary text, does not need fallback experience without the icon.</p>
+
+	<span class="icon icon-facebook" aria-hidden="true"></span>
+	Share on Facebook (Sibling Text)
+
+	<h2>Bad Examples (For Testing Only)</h2>
+	<h3>Decroative Icon without Fallback (Nested Text)</h3>
+	<p>If you nest the text, the icon may confuse screen readers (unable to use aria-hidden).</p>
+	<span class="icon icon-facebook">Share on Facebook (Nested Text)</span>
+</body>
+</html>
