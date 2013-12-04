@@ -1,5 +1,5 @@
 ;(function( win, doc ) {
-		var MAX_TIMEOUT = 5000,
+		var MAX_TIMEOUT = 10000,
 			DELAY = 100,
 			TEST_STRING = 'AxmTYklsjo190QW',
 			TOLERANCE = 2, // px
@@ -54,6 +54,9 @@
 				};
 			}
 
+			// Make sure we set the new font-family after we take our initial dimensions:
+			// handles the case where FontFaceOnload is called after the font has already
+			// loaded.
 			sansSerif.style.fontFamily = fontFamily + ', ' + SANS_SERIF_FONTS;
 			serif.style.fontFamily = fontFamily + ', ' + SERIF_FONTS;
 
