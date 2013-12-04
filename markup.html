@@ -69,8 +69,7 @@
 	.supports-fontface.icomoon .icon-feed:before {
 		content: "\e605";
 	}
-	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before,
-	.supports-fontface .icon-fallback-img .icon-hamburger:before {
+	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before {
 		content: "\e601";
 		font-size: inherit;
 		line-height: inherit;
@@ -86,6 +85,7 @@
 <script>
 window.onload = function() {
 	FontFaceOnload( 'icomoon', {
+		// These characters are a few of the glyphs from the font above */
 		glyphs: '\uE600\uE601\uE602\uE605',
 		success: function() {
 			document.documentElement.className += ' icomoon';
