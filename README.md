@@ -1,4 +1,4 @@
-## Speed Bumps
+## Font Icons: Speed Bumps
 
 ### Ligatures
 
@@ -22,7 +22,7 @@ It’s important to note that the PUA is sometimes used by the default Operating
 
 ### Screenreaders
 
-Some screen readers will [read Unicode characters out loud](http://jsbin.com/uGIFeyES/3).
+Some screen readers will [read an unknown subset of Unicode characters out loud](http://jsbin.com/uGIFeyES/3).
 
 ## Font Face Feature Tests
 
@@ -30,7 +30,9 @@ Some screen readers will [read Unicode characters out loud](http://jsbin.com/uGI
 * Modernizr
 * [Pixel Ambracht](http://pixelambacht.nl/2013/font-face-render-check/)
 
-## *a-font-garde*: A set of reliable patterns for icon fonts
+## A Font Garde
+
+**A set of reliable patterns for icon fonts**
 
 ### Uses Cases:
 
@@ -181,4 +183,6 @@ The fallback background-image is marginally less reliable, since it does not che
 * [Symbolset](http://symbolset.com/)
 * [IcoMoon](http://icomoon.io/)
 * [Zurb Foundation Icons](http://zurb.com/playground/foundation-icons)
-* [Twitter Bootstrap Glyphicons]()
+* Twitter Bootstrap Glyphicons
+
+
