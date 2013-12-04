@@ -26,28 +26,25 @@
 		display: inline-block;
 	}
 
-	.icon-fallback-icon label,
+	.icon-fallback-glyph label,
+	.icon-fallback-img label,
 	.supports-fontface.icomoon .icon-fallback-text label {
 		/* visually hide but accessible (h5bp.com) */
-		border: 0;
 		clip: rect(0 0 0 0);
-		height: 1px;
-		margin: -1px;
 		overflow: hidden;
-		padding: 0;
 		position: absolute;
+		height: 1px;
 		width: 1px;
 	}
 	/* Optional Fallback glyph (not recommended unless very well supported http://unicode.johnholtripley.co.uk/ instead consider using a bitmap) */
-	.icon-fallback-icon .icon-hamburger:before {
+	.icon-fallback-glyph .icon-hamburger:before {
 		content: "\2261"; /* Hamburger */
 		font-size: 2em;
 		line-height: .5;
 	}
 	/* Fallback Bitmap */
-	.icon-fallback-icon .icon-hamburger-img:before {
+	.icon-fallback-img .icon-hamburger:before {
 		content: "";
-		font-size: inherit;
 		background-image: url('fonts/png/hamburger.png');
 		background-repeat: no-repeat;
 		display: inline-block;
@@ -72,12 +69,16 @@
 	.supports-fontface.icomoon .icon-feed:before {
 		content: "\e605";
 	}
-	/* This test is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
-	.supports-fontface .icon-hamburger:before {
+	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before,
+	.supports-fontface .icon-fallback-img .icon-hamburger:before {
 		content: "\e601";
 		font-size: inherit;
-		background-image: none;
 		line-height: inherit;
+	}
+	/* The img fallback version is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
+	.supports-fontface .icon-fallback-img .icon-hamburger:before {
+		content: "\e601";
+		background-image: none;
 	}
 </style>
 <script src="faceoff.js"></script>
@@ -127,15 +128,15 @@ window.onload = function() {
 	<p>Doesn’t show supplementary text, must show fallback icon without the primary icon. This can be a background image or a Unicode glyph. Supplementary text is still available to screen readers.<p>
 
 	<h3>Fallback to Glyph</h3>
-	<span class="icon-fallback-icon">
+	<span class="icon-fallback-glyph">
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
 		<label>Menu</label>
 	</span>
 
 	<h3>Fallback to Image</h3>
 	<p>Fixed colors, must know the size of the glyph, requires `background-size` to resize.</p>
-	<span class="icon-fallback-icon">
-		<span class="icon icon-hamburger icon-hamburger-img" aria-hidden="true"></span>
+	<span class="icon-fallback-img">
+		<span class="icon icon-hamburger" aria-hidden="true"></span>
 		<label>Menu</label>
 	</span>
 
