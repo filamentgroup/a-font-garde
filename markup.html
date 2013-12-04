@@ -38,7 +38,24 @@
 		position: absolute;
 		width: 1px;
 	}
+	/* Optional Fallback glyph (not recommended unless very well supported http://unicode.johnholtripley.co.uk/ instead consider using a bitmap) */
+	.icon-critical-icon .icon-hamburger:before {
+		content: "\2261"; /* Hamburger */
+		font-size: 2em;
+		line-height: .5;
+	}
+	/* Fallback Bitmap */
+	.icon-critical-icon .icon-hamburger-img:before {
+		content: "";
+		font-size: inherit;
+		background-image: url('fonts/png/hamburger.png');
+		background-repeat: no-repeat;
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+	}
 
+	/* A-Grade Experience, @font-face supported and font has loaded successfully */
 	.supports-fontface.icomoon .icon:before {
 		font-family: icomoon;
 	}
@@ -55,25 +72,9 @@
 	.supports-fontface.icomoon .icon-feed:before {
 		content: "\e605";
 	}
-
-	/* Optional Fallback glyph (not recommended unless very well supported http://unicode.johnholtripley.co.uk/ instead consider using a bitmap) */
-	.icon-critical-icon .icon-hamburger:before {
-		content: "\2261"; /* Hamburger */
-		font-size: 2em;
-		line-height: .5;
-	}
-	.icon-critical-icon .icon-hamburger-img:before {
-		content: "";
-		font-size: inherit;
-		background-image: url('fonts/png/hamburger.png');
-		background-repeat: no-repeat;
-		display: inline-block;
-		width: 1em;
-		height: 1em;
-	}
 	.supports-fontface.icomoon .icon-hamburger:before {
-		font-size: inherit;
 		content: "\e601";
+		font-size: inherit;
 		background-image: none;
 		line-height: inherit;
 	}
@@ -151,7 +152,7 @@ window.onload = function() {
 	Share on Facebook (Sibling Text)
 
 	<h2>Bad Examples (For Testing Only)</h2>
-	<h3>Decroative Icon without Fallback (Nested Text)</h3>
+	<h3>Decorative Icon without Fallback (Nested Text)</h3>
 	<p>If you nest the text, the icon may confuse screen readers (unable to use aria-hidden).</p>
 	<span class="icon icon-facebook">Share on Facebook (Nested Text)</span>
 </body>
