@@ -1,13 +1,16 @@
 .icon-fallback-text .icon {
 	display: none;
 }
-.supports-fontface.icomoon.supports-generatedcontent .icon-fallback-text .icon {
+.supports-fontface.fontloaded .icon {
+	-webkit-font-smoothing: antialiased;
+}
+.supports-fontface.fontloaded.supports-generatedcontent .icon-fallback-text .icon {
 	display: inline-block;
 }
 
 .icon-fallback-glyph label,
 .icon-fallback-img label,
-.supports-fontface.icomoon.supports-generatedcontent .icon-fallback-text label {
+.supports-fontface.fontloaded.supports-generatedcontent .icon-fallback-text label {
 	/* visually hide but accessible (h5bp.com) */
 	clip: rect(0 0 0 0);
 	overflow: hidden;
@@ -24,7 +27,7 @@
 	height: auto;
 	width: auto;
 }
-.supports-fontface.icomoon .icon-fallback-glyph .icon:before {
+.supports-fontface.fontloaded .icon-fallback-glyph .icon:before {
 	font-size: inherit;
 	line-height: inherit;
 }
@@ -34,7 +37,7 @@
 .icon-fallback-img .icon:before {
 	content: "";
 }
-/* The img fallback version is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
+/* The img fallback version is not as reliable since it does not check to make sure the fontloaded font has loaded. If we did add the .fontloaded class, it would unnecessarily request the fallback image. */
 .supports-fontface.supports-generatedcontent .icon-fallback-img .icon {
 	background-image: none;
 }

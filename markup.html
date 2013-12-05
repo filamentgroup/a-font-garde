@@ -25,20 +25,20 @@
 	/***************************
 	 * A-Grade Icons
 	 ***************************/
-	.supports-fontface.icomoon .icon:before {
+	.supports-fontface.fontloaded .icon:before {
 		font-family: icomoon;
 	}
 	/* Icons */
-	.supports-fontface.icomoon .icon-twitter:before {
+	.supports-fontface.fontloaded .icon-twitter:before {
 		content: "\e604";
 	}
-	.supports-fontface.icomoon .icon-google-plus:before {
+	.supports-fontface.fontloaded .icon-google-plus:before {
 		content: "\e600";
 	}
-	.supports-fontface.icomoon .icon-facebook:before {
+	.supports-fontface.fontloaded .icon-facebook:before {
 		content: "\e602";
 	}
-	.supports-fontface.icomoon .icon-feed:before {
+	.supports-fontface.fontloaded .icon-feed:before {
 		content: "\e605";
 	}
 
@@ -51,7 +51,7 @@
 		line-height: .5;
 	}
 	/* A-Grade */
-	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before {
+	.supports-fontface.fontloaded .icon-fallback-glyph .icon-hamburger:before {
 		content: "\e601";
 	}
 
@@ -80,7 +80,8 @@ window.onload = function() {
 		glyphs: '\uE600\uE601\uE602\uE605',
 		timeout: 5000,
 		success: function() {
-			document.documentElement.className += ' icomoon';
+			// If you’re using more than one icon font, change this classname (and in a-font-garde.css)
+			document.documentElement.className += ' fontloaded';
 		}
 	});
 };
