@@ -43,13 +43,15 @@
 		line-height: .5;
 	}
 	/* Fallback Bitmap */
-	.icon-fallback-img .icon-hamburger:before {
-		content: "";
-		background-image: url('fonts/png/hamburger.png');
-		background-repeat: no-repeat;
-		display: inline-block;
+	.icon-fallback-img .icon-hamburger {
+		display: block;
 		width: 1em;
 		height: 1em;
+		/* Note: BB5 doesn’t support background-images on pseudo-elements */
+		background: url("fonts/png/hamburger.png") no-repeat;
+	}
+	.icon-fallback-img .icon-hamburger:before {
+		content: "";
 	}
 
 	/* A-Grade Experience, @font-face supported and font has loaded successfully */
@@ -75,9 +77,12 @@
 		line-height: inherit;
 	}
 	/* The img fallback version is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
-	.supports-fontface .icon-fallback-img .icon-hamburger:before {
-		content: "\e601";
+	.supports-fontface .icon-fallback-img .icon-hamburger {
 		background-image: none;
+	}
+	.supports-fontface .icon-fallback-img .icon-hamburger:before {
+		font-family: icomoon;
+		content: "\e601";
 	}
 </style>
 <!-- <script src="lib/faceoff.js"></script> -->

@@ -147,13 +147,15 @@ If the icon fails, a fallback icon is shown. Otherwise hide the default icon.
 		line-height: .5;
 	}
 	/* Fallback Bitmap (Must set width/height) */
-	.icon-fallback-img .icon-hamburger:before {
-		content: "";
-		background-image: url('fonts/png/hamburger.png');
-		background-repeat: no-repeat;
-		display: inline-block;
+	.icon-fallback-img .icon-hamburger {
+		display: block;
 		width: 1em;
 		height: 1em;
+		/* Note: BB5 doesn’t support background-images on pseudo-elements */
+		background: url("fonts/png/hamburger.png") no-repeat;
+	}
+	.icon-fallback-img .icon-hamburger:before {
+		content: "";
 	}
 	/* A-Grade */
 	.supports-fontface.icomoon .icon:before {
@@ -164,9 +166,12 @@ If the icon fails, a fallback icon is shown. Otherwise hide the default icon.
 		font-size: inherit;
 		line-height: inherit;
 	}
-	.supports-fontface .icon-fallback-img .icon-hamburger:before {
-		content: "\e601";
+	.supports-fontface .icon-fallback-img .icon-hamburger {
 		background-image: none;
+	}
+	.supports-fontface .icon-fallback-img .icon-hamburger:before {
+		font-family: icomoon;
+		content: "\e601";
 	}
 
 Choose your fallback glyph character with care. Cross-broswer/platform compatibility may vary. Check the [compatibility tables]( http://unicode.johnholtripley.co.uk/).
