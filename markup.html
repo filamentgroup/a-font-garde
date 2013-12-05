@@ -80,13 +80,15 @@
 		background-image: none;
 	}
 </style>
-<script src="faceoff.js"></script>
-<script src="fontfaceonload.js"></script>
+<!-- <script src="lib/faceoff.js"></script> -->
+<script src="lib/modernizr.font-face.js"></script>
+<script src="lib/fontfaceonload.js"></script>
 <script>
 window.onload = function() {
 	FontFaceOnload( 'icomoon', {
 		// These characters are a few of the glyphs from the font above */
 		glyphs: '\uE600\uE601\uE602\uE605',
+		timeout: 5000,
 		success: function() {
 			document.documentElement.className += ' icomoon';
 		}
