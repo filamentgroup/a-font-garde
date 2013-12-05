@@ -43,25 +43,24 @@
 		height: auto;
 		width: auto;
 	}
-	/* Optional Fallback glyph (not recommended unless very well supported http://unicode.johnholtripley.co.uk/ instead consider using a bitmap) */
-	.icon-fallback-glyph .icon-hamburger:before {
-		content: "\2261"; /* Hamburger */
-		font-size: 2em;
-		line-height: .5;
+	.supports-fontface.icomoon .icon-fallback-glyph .icon:before {
+		font-size: inherit;
+		line-height: inherit;
 	}
-	/* Fallback Bitmap */
-	.icon-fallback-img .icon-hamburger {
-		display: block;
-		width: 1em;
-		height: 1em;
-		/* Note: BB5 doesn’t support background-images on pseudo-elements */
-		background: url("fonts/png/hamburger.png") no-repeat;
+	.icon-fallback-img .icon {
+		display: inline-block;
 	}
-	.icon-fallback-img .icon-hamburger:before {
+	.icon-fallback-img .icon:before {
 		content: "";
 	}
+	/* The img fallback version is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
+	.supports-fontface.supports-generatedcontent .icon-fallback-img .icon {
+		background-image: none;
+	}
 
-	/* A-Grade Experience, @font-face supported and font has loaded successfully */
+	/***************************
+	 * A-Grade Icons
+	 ***************************/
 	.supports-fontface.icomoon .icon:before {
 		font-family: icomoon;
 	}
@@ -78,14 +77,27 @@
 	.supports-fontface.icomoon .icon-feed:before {
 		content: "\e605";
 	}
+
+	/***************************
+	 * Fallback Glyph
+	 ***************************/
+	.icon-fallback-glyph .icon-hamburger:before {
+		content: "\2261"; /* Hamburger */
+		font-size: 2em;
+		line-height: .5;
+	}
 	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before {
 		content: "\e601";
-		font-size: inherit;
-		line-height: inherit;
 	}
-	/* The img fallback version is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
-	.supports-fontface.supports-generatedcontent .icon-fallback-img .icon-hamburger {
-		background-image: none;
+
+	/***************************
+	 * Fallback Bitmap
+	 ***************************/
+	.icon-fallback-img .icon-hamburger {
+		width: 1em;
+		height: 1em;
+		/* Note: BB5 doesn’t support background-images on pseudo-elements */
+		background: url("fonts/png/hamburger.png") no-repeat;
 	}
 	.supports-fontface .icon-fallback-img .icon-hamburger:before {
 		font-family: icomoon;
