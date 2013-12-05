@@ -1,3 +1,7 @@
+# A Font Garde
+
+**A set of reliable (nay, bulletproof) patterns for icon fonts.**
+
 ## Font Icons: Speed Bumps
 
 ### Ligatures
@@ -8,11 +12,11 @@ Requires `text-rendering: optimizeLegibility`. Still has a lot of gnarly WebKit 
 
 Source: [MDN text-rendering](https://developer.mozilla.org/en-US/docs/Web/CSS/text-rendering).
 
- A great article by [Elliot Jay Stocks on Ligatures](http://elliotjaystocks.com/blog/the-fine-flourish-of-the-ligature/). He references using [`font-feature-settings`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) instead of `text-rendering`. The browser support is slightly worse, but is more reliable.
+A great article by [Elliot Jay Stocks on Ligatures](http://elliotjaystocks.com/blog/the-fine-flourish-of-the-ligature/). He references using [`font-feature-settings`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) instead of `text-rendering`. The browser support is slightly worse, but is more reliable.
 
-* Symbolset has [3 different modes](http://webcache.googleusercontent.com/search?q=cache:K1TPKPtfytUJ:blog.symbolset.com/browser-support+&cd=1&hl=en&ct=clnk&gl=us)—only one of which uses ligatures. In Symbolset, the ligatures have individually selectable vertical slices of icon.
+Take note that ligatures cannot contain whitespace (ruling out multiple words). The [Icomoon](icomoon.io) tool warns also that `Ligatures with special characters or numbers may not work as expected in some browsers.`
 
-Use of ligatures for icon fonts is not recommended due to internationalization concerns (ties presentation to language text). To avoid i18n-performance bloat, you’d need to generate a new font-icon for each language you’re supporting. 
+Another concern with ligatures is the internationalization of content (ties presentation to language text). To avoid i18n-performance bloat, you’d need to generate a new font-icon for each language you’re supporting. 
 
 ### Private Use Areas (PUA)
 
@@ -28,11 +32,9 @@ Some screen readers will [read an unknown subset of Unicode characters out loud]
 
 * [Mat’s `face-off`](https://github.com/filamentgroup/face-off)
 * Modernizr
-* [Pixel Ambracht](http://pixelambacht.nl/2013/font-face-render-check/)
+* [Pixel Ambracht](http://pixelambacht.nl/2013/font-face-render-check/): Careful if you support IE8. This test requires an external request and thus may have a race condition for if you’re using background-image for a fallback.
 
-## A Font Garde
-
-**A set of reliable patterns for icon fonts**
+## Markup Patterns
 
 ### Uses Cases:
 
@@ -43,7 +45,7 @@ Some screen readers will [read an unknown subset of Unicode characters out loud]
 		* Fallback to an image (probably bitmap for compatibility)
 1. Icon as decoration, does not need a fallback but must not take up space (for proper centering/alignment of neighboring content)
 
-### Support Matrix
+### Support List
 
 1. CSS
 1. `:before` or `:after`
@@ -56,23 +58,24 @@ Some screen readers will [read an unknown subset of Unicode characters out loud]
 
 ##### HTML
 
-	<span class="icon icon-facebook" aria-hidden="true"></span>
-	Share on Facebook (Sibling Text)
+	<span class="icon icon-twitter" aria-hidden="true"></span>
+	Share on Twitter (Sibling Text)
 
 Make sure you use sibling text here for labels—don’t nest the text inside of the icon `span`. We need `aria-hidden` on the icon to make sure it is not read aloud by screen readers.
 
 ##### CSS
 
-	.supports-fontface.icomoon .icon:before {
+	.supports-fontface.fontloaded .icon:before {
 		font-family: icomoon;
 	}
-	.supports-fontface.icomoon .icon-glyph:before {
-		content: "\XXXX"; /* Your glyph, preferably located in the Private Use Area */
+	/* Icons */
+	.supports-fontface.fontloaded .icon-twitter:before {
+		content: "\e604";
 	}
 
-The font-face feature test adds the `supports-fontface` class. We’re using our [face-off](https://github.com/filamentgroup/face-off) feature test. If you use [Modernizr](http://modernizr.com/docs/#features-css), replace with `fontface`.
+Here, we’re using Modernizr (with the `supports-` classes prefix) tests for `fontface` and `generatedcontent`.
 
-The `icomoon` class is added by the FontFaceOnload script, which checks to make sure the font has successfully loaded (just because a browser supports font-face doesn’t mean the request will succeed).
+The `fontloaded` class is added by the FontFaceOnload script, which checks to make sure the Icomoon font has successfully loaded (just because a browser supports font-face doesn’t mean the request will succeed).
 
 #### Critical Icons with Fallback Text
 
@@ -88,40 +91,35 @@ If the icon fails, the text must show. Otherwise hide it.
 
 ##### CSS
 
-	.icon-fallback-text .icon {
-		display: none;
-	}
-	/* A-grade */
-	.supports-fontface.icomoon .icon-fallback-text .icon {
-		display: inline-block;
-	}
-	.supports-fontface.icomoon .icon-fallback-text label {
-		/* Visually hide but accessible (h5bp.com) */
-		clip: rect(0 0 0 0);
-		overflow: hidden;
-		position: absolute;
-		height: 1px;
-		width: 1px;
-	}
-	.supports-fontface.icomoon .icon:before {
-		font-family: icomoon;
-	}
-	.supports-fontface.icomoon .icon-glyph:before {
-		content: "\XXXX"; /* Your glyph, preferably located in the Private Use Area */
-	}
-
+*Reuse the decorative icon CSS above.*
 
 #### Critical Icons with Fallback Icons
 
 If the icon fails, a fallback icon is shown. Otherwise hide the default icon.
 
-##### HTML
+##### HTML for fallback to Unicode Glyph
 
-	<!-- Fallback to Unicode Glyph -->
 	<span class="icon-fallback-glyph">
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
 		<label>Menu</label>
 	</span>
+
+##### CSS for fallback to Unicode Glyph
+
+	.icon-fallback-glyph .icon-hamburger:before {
+		content: "\2261"; /* Hamburger */
+		/* Adjust to match the icon font size */
+		font-size: 2em;
+		line-height: .5;
+	}
+	/* A-Grade */
+	.supports-fontface.fontloaded .icon-fallback-glyph .icon-hamburger:before {
+		content: "\e601";
+	}
+
+Choose your fallback glyph character with care. Cross-browser/platform compatibility may vary. Check John Holt Ripley’s [compatibility tables]( http://unicode.johnholtripley.co.uk/).
+
+##### HTML for fallback to Bitmap
 
 	<!-- Fallback to Background Image -->
 	<span class="icon-fallback-img">
@@ -129,52 +127,20 @@ If the icon fails, a fallback icon is shown. Otherwise hide the default icon.
 		<label>Menu</label>
 	</span>
 
-##### CSS
+##### CSS for fallback to Bitmap
 
-	.icon-fallback-glyph label,
-	.icon-fallback-img label {
-		/* visually hide but accessible (h5bp.com) */
-		clip: rect(0 0 0 0);
-		overflow: hidden;
-		position: absolute;
-		height: 1px;
-		width: 1px;
-	}
-	/* Fallback Glyph (Adjusted font-size and line-height to match) */
-	.icon-fallback-glyph .icon-hamburger:before {
-		content: "\2261"; /* Hamburger */
-		font-size: 2em;
-		line-height: .5;
-	}
-	/* Fallback Bitmap (Must set width/height) */
 	.icon-fallback-img .icon-hamburger {
-		display: block;
+		/* Adjust to match the icon font size */
 		width: 1em;
 		height: 1em;
 		/* Note: BB5 doesn’t support background-images on pseudo-elements */
 		background: url("fonts/png/hamburger.png") no-repeat;
 	}
-	.icon-fallback-img .icon-hamburger:before {
-		content: "";
-	}
 	/* A-Grade */
-	.supports-fontface.icomoon .icon:before {
-		font-family: icomoon;
-	}
-	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before {
-		content: "\e601";
-		font-size: inherit;
-		line-height: inherit;
-	}
-	.supports-fontface .icon-fallback-img .icon-hamburger {
-		background-image: none;
-	}
 	.supports-fontface .icon-fallback-img .icon-hamburger:before {
 		font-family: icomoon;
 		content: "\e601";
 	}
-
-Choose your fallback glyph character with care. Cross-broswer/platform compatibility may vary. Check the [compatibility tables]( http://unicode.johnholtripley.co.uk/).
 
 The fallback background-image is marginally less reliable, since it does not check to make sure the icon font has successfully loaded. We do this so that the background-image request will not be prematurely triggered. If the HTTP request for the font fails, this will show the default Unicode character for `"\e601"`.
 
@@ -183,11 +149,37 @@ The fallback background-image is marginally less reliable, since it does not che
 * If there were a more reliable way to reproduce aria-hidden using only CSS, we could use only :before/:after instead of a separate element.
 * Without aria-hidden, VoiceOver emitted a chirping noise for the icons elements.
 
-## Evaluate Current Public Offerings
+### Tested On (using Modernizr Feature Test)
 
-* [Symbolset](http://symbolset.com/)
-* [IcoMoon](http://icomoon.io/)
-* [Zurb Foundation Icons](http://zurb.com/playground/foundation-icons)
-* Twitter Bootstrap Glyphicons
+* Chrome 31
+* Firefox 25
+* Safari 7
+* iOS 7 Safari
+* Opera 12
+* Blackberry OS 7
+* Android 2.3
+* Internet Explorer 8, 9, 10, 11
+
+#### Fallback Experience
+
+* Opera Mini
+* Windows Phone 7.5 (Note: The icon-fallback-img method fails here because of a Modernizr false positive)
+* Opera 9
+* Blackberry OS 5
+* Internet Explorer 7 (Exception: The icon-fallback-glyph method falls back to text due to a lack of :before/:after support)
+
+## Icon Fonts Code Reviewed
+
+### [Symbolset](http://symbolset.com/)
+
+Has [3 different modes](http://webcache.googleusercontent.com/search?q=cache:K1TPKPtfytUJ:blog.symbolset.com/browser-support+&cd=1&hl=en&ct=clnk&gl=us) of operation:
+* Unicode uses a Unicode character as HTML content. When the font is not available, the default glyph is shown. This can cause unintended consequences when glyphs are mapped to the PUA.
+* The CSS Classes approach uses `:before`/`:after` on a single parent element to add the icon. This means they are not hidden properly from screen readers.
+* The Keywords approach uses ligatures, the problems with which are documented above. Some of the examples on the Symbolset site include `navigateleft` and `navigateright` which may not be ideal for screen readers.
+
+### Others
+
+Both [Zurb Foundation Icons](http://zurb.com/playground/foundation-icons) and [Twitter Bootstrap Glyphicons](http://getbootstrap.com/components/#glyphicons) use the same approach as Symbolset CSS Classes.
+
 
 
