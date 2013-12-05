@@ -22,19 +22,26 @@
 	.icon-fallback-text .icon {
 		display: none;
 	}
-	.supports-fontface.icomoon .icon-fallback-text .icon {
+	.supports-fontface.icomoon.supports-generatedcontent .icon-fallback-text .icon {
 		display: inline-block;
 	}
 
 	.icon-fallback-glyph label,
 	.icon-fallback-img label,
-	.supports-fontface.icomoon .icon-fallback-text label {
+	.supports-fontface.icomoon.supports-generatedcontent .icon-fallback-text label {
 		/* visually hide but accessible (h5bp.com) */
 		clip: rect(0 0 0 0);
 		overflow: hidden;
 		position: absolute;
 		height: 1px;
 		width: 1px;
+	}
+	.supports-no-generatedcontent .icon-fallback-glyph label {
+		clip: auto;
+		overflow: visible;
+		position: static;
+		height: auto;
+		width: auto;
 	}
 	/* Optional Fallback glyph (not recommended unless very well supported http://unicode.johnholtripley.co.uk/ instead consider using a bitmap) */
 	.icon-fallback-glyph .icon-hamburger:before {
@@ -77,7 +84,7 @@
 		line-height: inherit;
 	}
 	/* The img fallback version is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
-	.supports-fontface .icon-fallback-img .icon-hamburger {
+	.supports-fontface.supports-generatedcontent .icon-fallback-img .icon-hamburger {
 		background-image: none;
 	}
 	.supports-fontface .icon-fallback-img .icon-hamburger:before {
@@ -86,7 +93,7 @@
 	}
 </style>
 <!-- <script src="lib/faceoff.js"></script> -->
-<script src="lib/modernizr.font-face.js"></script>
+<script src="lib/modernizr.fontface-generatedcontent.js"></script>
 <script src="lib/fontfaceonload.js"></script>
 <script>
 window.onload = function() {
@@ -139,6 +146,8 @@ window.onload = function() {
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
 		<label>Menu</label>
 	</span>
+
+	<p>Warning: In browsers that don’t support :before/:after (IE6-7), fallback is text.</p>
 
 	<h3>Fallback to Image</h3>
 	<p>Fixed colors, must know the size of the glyph, requires `background-size` to resize.</p>
