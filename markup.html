@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <title>Icon Fonts</title>
+<link rel="stylesheet" href="a-font-garde.css">
 <style>
-	.icon {
-		color: blue;
+	body {
+		font-family: sans-serif;
+		max-width: 37.5em;
+		margin: 0 auto;
 	}
 
 	@font-face {
@@ -17,45 +20,6 @@
 			url('fonts/icomoon.svg#icomoon') format('svg');
 		font-weight: normal;
 		font-style: normal;
-	}
-
-	.icon-fallback-text .icon {
-		display: none;
-	}
-	.supports-fontface.icomoon.supports-generatedcontent .icon-fallback-text .icon {
-		display: inline-block;
-	}
-
-	.icon-fallback-glyph label,
-	.icon-fallback-img label,
-	.supports-fontface.icomoon.supports-generatedcontent .icon-fallback-text label {
-		/* visually hide but accessible (h5bp.com) */
-		clip: rect(0 0 0 0);
-		overflow: hidden;
-		position: absolute;
-		height: 1px;
-		width: 1px;
-	}
-	.supports-no-generatedcontent .icon-fallback-glyph label {
-		clip: auto;
-		overflow: visible;
-		position: static;
-		height: auto;
-		width: auto;
-	}
-	.supports-fontface.icomoon .icon-fallback-glyph .icon:before {
-		font-size: inherit;
-		line-height: inherit;
-	}
-	.icon-fallback-img .icon {
-		display: inline-block;
-	}
-	.icon-fallback-img .icon:before {
-		content: "";
-	}
-	/* The img fallback version is not as reliable since it does not check to make sure the icomoon font has loaded. If we did add the .icomoon class, it would unnecessarily request the fallback image. */
-	.supports-fontface.supports-generatedcontent .icon-fallback-img .icon {
-		background-image: none;
 	}
 
 	/***************************
@@ -86,6 +50,7 @@
 		font-size: 2em;
 		line-height: .5;
 	}
+	/* A-Grade */
 	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before {
 		content: "\e601";
 	}
@@ -99,6 +64,7 @@
 		/* Note: BB5 doesn’t support background-images on pseudo-elements */
 		background: url("fonts/png/hamburger.png") no-repeat;
 	}
+	/* A-Grade */
 	.supports-fontface .icon-fallback-img .icon-hamburger:before {
 		font-family: icomoon;
 		content: "\e601";
@@ -176,12 +142,12 @@ window.onload = function() {
 	<h2>Decorative Icon without Fallback</h2>
 	<p>Shows supplementary text, does not need fallback experience without the icon.</p>
 
-	<span class="icon icon-facebook" aria-hidden="true"></span>
-	Share on Facebook (Sibling Text)
+	<span class="icon icon-twitter" aria-hidden="true"></span>
+	Share on Twitter (Sibling Text)
 
 	<h2>Bad Examples (For Testing Only)</h2>
 	<h3>Decorative Icon without Fallback (Nested Text)</h3>
 	<p>If you nest the text, the icon may confuse screen readers (unable to use aria-hidden).</p>
-	<span class="icon icon-facebook">Share on Facebook (Nested Text)</span>
+	<span class="icon icon-twitter">Share on Twitter (Nested Text)</span>
 </body>
 </html>
