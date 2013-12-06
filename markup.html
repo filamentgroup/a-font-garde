@@ -100,7 +100,7 @@ window.onload = function() {
 </script>
 </head>
 <body>
-	<h2>Critical Icons with Fallback Text</h2>
+	<h2>Use Case #1: Critical Icons with Fallback Text</h2>
 	<p>Doesn’t show supplementary text, but must show fallback text without the icon. Supplementary text is still available to screen readers.<p>
 
 	<span class="icon-fallback-text">
@@ -124,12 +124,21 @@ window.onload = function() {
 		<label>RSS Feed</label>
 	</span>
 
+	<h3>HTML</h3>
+	<pre><code>
+&lt;span class=&quot;icon-fallback-text&quot;&gt;
+	&lt;!-- requires an element for aria-hidden --&gt;
+	&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;label&gt;Twitter&lt;/label&gt;
+&lt;/span&gt;
+	</code></pre>
+
 	<h3>Failed experiments:</h3>
 	<ul>
-		<li>Eliminate the label element and clip to just show the icon. Requires us to know the width of each glyph. Easier to just keep the label.</li>
+		<li>Eliminate the label element and clip to just show the icon. Requires us to know the width of each glyph. It’s better to just keep the label.</li>
 	</ul>
 
-	<h2>Critical Icons with Fallback Icon</h2>
+	<h2>Use Case #2: Critical Icons with Fallback Icon</h2>
 	<p>Doesn’t show supplementary text, must show fallback icon without the primary icon. This can be a background image or a Unicode glyph. Supplementary text is still available to screen readers.<p>
 
 	<h3>Fallback to Glyph</h3>
@@ -140,6 +149,14 @@ window.onload = function() {
 
 	<p>Warning: In browsers that don’t support :before/:after (IE6-7), fallback is text.</p>
 
+	<h4>HTML</h4>
+	<pre><code>
+&lt;span class=&quot;icon-fallback-glyph&quot;&gt;
+	&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;label&gt;Menu&lt;/label&gt;
+&lt;/span&gt;
+	</code></pre>
+
 	<h3>Fallback to Image</h3>
 	<p>Fixed colors, must know the size of the glyph, requires `background-size` to resize.</p>
 	<span class="icon-fallback-img">
@@ -147,16 +164,30 @@ window.onload = function() {
 		<label>Menu</label>
 	</span>
 
+	<h4>HTML</h4>
+	<pre><code>
+&lt;span class=&quot;icon-fallback-img&quot;&gt;
+	&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;label&gt;Menu&lt;/label&gt;
+&lt;/span&gt;
+	</code></pre>
+
 	<h3>Failed experiments:</h3>
 	<ul>
 		<li>In an attempt to remove reliance on :before/:after, we could just put the icon character in the <code>&lt;span class="icon"&gt;</code> content.  But in order to replace the content with a fallback glyph we need it in CSS.</li>
 	</ul>
 
-	<h2>Decorative Icon without Fallback</h2>
+	<h2>Use Case #3: Decorative Icon without Fallback</h2>
 	<p>Shows supplementary text, does not need fallback experience without the icon.</p>
 
 	<span class="icon icon-twitter" aria-hidden="true"></span>
 	Share on Twitter (Sibling Text)
+
+	<h3>HTML</h4>
+	<pre><code>
+&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+Share on Twitter (Sibling Text)
+	</code></pre>
 
 	<h2>Bad Examples (For Testing Only)</h2>
 	<h3>Decorative Icon without Fallback (Nested Text)</h3>
