@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Icon Fonts</title>
 <link rel="stylesheet" href="a-font-garde.css">
 <style>
@@ -16,10 +17,21 @@
 		src:url('fonts/icomoon.eot');
 		src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
 			url('fonts/icomoon.ttf') format('truetype'),
-			url('fonts/icomoon.woff') format('woff'),
-			url('fonts/icomoon.svg#icomoon') format('svg');
+			url('fonts/icomoon.woff') format('woff');
 		font-weight: normal;
 		font-style: normal;
+	}
+	/*
+		Fix for issue with fonts in Windows 7/8 and Chrome:
+			http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
+		Must also not serve SVG to BB OS6:
+			https://github.com/scottjehl/Device-Bugs/issues/43
+	*/
+	@media (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+		@font-face {
+				font-family: icomoon;
+				src: url('fonts/icomoon.svg#icomoon') format('svg');
+		}
 	}
 
 	/***************************
