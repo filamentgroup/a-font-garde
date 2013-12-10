@@ -53,7 +53,7 @@
 		addEvent( "readystatechange", init );
 		addEvent( "load", init );
 
-		if( w.document.readyState === "complete" ){
+		if( doc.readyState === "complete" ){
 			init();
 		}
 	};
