@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Icon Fonts</title>
-<link rel="stylesheet" href="a-font-garde.css">
+<link rel="stylesheet" href="afontgarde.css">
 <style>
 	body {
 		font-family: sans-serif;
@@ -29,28 +29,28 @@
 	*/
 	@media (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
 		@font-face {
-				font-family: icomoon;
-				src: url('fonts/icomoon.svg#icomoon') format('svg');
+			font-family: icomoon;
+			src: url('fonts/icomoon.svg#icomoon') format('svg');
 		}
 	}
 
 	/***************************
 	 * A-Grade Icons
 	 ***************************/
-	.supports-fontface.fontloaded .icon:before {
+	.supports-fontface.icomoon .icon:before {
 		font-family: icomoon;
 	}
 	/* Icons */
-	.supports-fontface.fontloaded .icon-twitter:before {
+	.supports-fontface.icomoon .icon-twitter:before {
 		content: "\e604";
 	}
-	.supports-fontface.fontloaded .icon-google-plus:before {
+	.supports-fontface.icomoon .icon-google-plus:before {
 		content: "\e600";
 	}
-	.supports-fontface.fontloaded .icon-facebook:before {
+	.supports-fontface.icomoon .icon-facebook:before {
 		content: "\e602";
 	}
-	.supports-fontface.fontloaded .icon-feed:before {
+	.supports-fontface.icomoon .icon-feed:before {
 		content: "\e605";
 	}
 
@@ -63,7 +63,7 @@
 		line-height: .5;
 	}
 	/* A-Grade */
-	.supports-fontface.fontloaded .icon-fallback-glyph .icon-hamburger:before {
+	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before {
 		content: "\e601";
 	}
 
@@ -85,18 +85,9 @@
 <!-- <script src="lib/faceoff.js"></script> -->
 <script src="lib/modernizr.fontface-generatedcontent.js"></script>
 <script src="lib/fontfaceonload.js"></script>
+<script src="afontgarde.js"></script>
 <script>
-window.onload = function() {
-	FontFaceOnload( 'icomoon', {
-		// These characters are a few of the glyphs from the font above */
-		glyphs: '\uE600\uE601\uE602\uE605',
-		timeout: 5000,
-		success: function() {
-			// If you’re using more than one icon font, change this classname (and in a-font-garde.css)
-			document.documentElement.className += ' fontloaded';
-		}
-	});
-};
+AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 </script>
 </head>
 <body>
