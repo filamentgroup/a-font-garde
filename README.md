@@ -163,11 +163,11 @@ The fallback background-image is marginally less reliable, since it does not che
 #### Fallback Experience
 
 * Opera Mini
-* Windows Phone 7.5 (Note: The icon-fallback-img method fails here because of a Modernizr false positive)
+* Windows Phone 7.5 (Note: The icon-fallback-img method fails here because of a Modernizr false positive—an issue has been filed and resolved)
 * Opera 9
 * Blackberry OS 5
 * Blackberry OS 6 (technically supports SVG @font-face, but it’s horribly buggy. So we isolate the SVG entry to newer WebKit and opt into the fallback experience)
-* Internet Explorer 7 (Exception: The icon-fallback-glyph method falls back to text due to a lack of :before/:after support)
+* Internet Explorer 7 (Exception: The icon-fallback-glyph method falls back to text instead of an image due to a lack of :before/:after support)
 
 ## Icon Fonts Code Reviewed
 
