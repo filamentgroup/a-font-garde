@@ -10,9 +10,7 @@ Really, you can use these approaches with any font-face feature test that suppli
 * [Mat’s `face-off`](https://github.com/filamentgroup/face-off)
 * [Pixel Ambracht](http://pixelambacht.nl/2013/font-face-render-check/): Careful if you support IE8. This test requires an external request and thus may have a race condition for if you’re using background-image for a fallback.
 
-## Markup Patterns
-
-### Uses Cases:
+## Uses Cases:
 
 1. Critical Icon
 	* Includes fallback text of varying length
@@ -30,16 +28,16 @@ Really, you can use these approaches with any font-face feature test that suppli
 
 ### [See all the Demos](http://filamentgroup.github.io/a-font-garde/markup.html)
 
-#### Decorative Icons (No Fallback Required)
+## Decorative Icons (No Fallback Required)
 
-##### HTML
+### HTML
 
 	<span class="icon icon-twitter" aria-hidden="true"></span>
 	Share on Twitter (Sibling Text)
 
 Make sure you use sibling text here for labels—don’t nest the text inside of the icon `span`. We need `aria-hidden` on the icon to make sure it is not read aloud by screen readers.
 
-##### CSS
+### CSS
 
 	.supports-fontface.fontloaded .icon:before {
 		font-family: icomoon;
@@ -53,11 +51,11 @@ Here, we’re using Modernizr (with the `supports-` classes prefix) tests for `f
 
 The `fontloaded` class is added by the FontFaceOnload script, which checks to make sure the Icomoon font has successfully loaded (just because a browser supports font-face doesn’t mean the request will succeed).
 
-#### Critical Icons with Fallback Text
+## Critical Icons with Fallback Text
 
 If the icon fails, the text must show. Otherwise hide it.
 
-##### HTML
+### HTML
 
 	<span class="icon-fallback-text">
 		<!-- requires an element for aria-hidden -->
@@ -65,22 +63,22 @@ If the icon fails, the text must show. Otherwise hide it.
 		<label>Fallback Text</label>
 	</span>
 
-##### CSS
+### CSS
 
 *Reuse the decorative icon CSS above.*
 
-#### Critical Icons with Fallback Icons
+## Critical Icons with Fallback Icons
 
 If the icon fails, a fallback icon is shown. Otherwise hide the default icon.
 
-##### HTML for fallback to Unicode Glyph
+### HTML for fallback to Unicode Glyph
 
 	<span class="icon-fallback-glyph">
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
 		<label>Menu</label>
 	</span>
 
-##### CSS for fallback to Unicode Glyph
+### CSS for fallback to Unicode Glyph
 
 	.icon-fallback-glyph .icon-hamburger:before {
 		content: "\2261"; /* Hamburger */
@@ -95,7 +93,7 @@ If the icon fails, a fallback icon is shown. Otherwise hide the default icon.
 
 Choose your fallback glyph character with care. Cross-browser/platform compatibility may vary. Check John Holt Ripley’s [compatibility tables]( http://unicode.johnholtripley.co.uk/).
 
-##### HTML for fallback to Bitmap
+### HTML for fallback to Bitmap
 
 	<!-- Fallback to Background Image -->
 	<span class="icon-fallback-img">
@@ -103,7 +101,7 @@ Choose your fallback glyph character with care. Cross-browser/platform compatibi
 		<label>Menu</label>
 	</span>
 
-##### CSS for fallback to Bitmap
+### CSS for fallback to Bitmap
 
 	.icon-fallback-img .icon-hamburger {
 		/* Adjust to match the icon font size */
@@ -120,7 +118,7 @@ Choose your fallback glyph character with care. Cross-browser/platform compatibi
 
 The fallback background-image is marginally less reliable, since it does not check to make sure the icon font has successfully loaded. We do this so that the background-image request will not be prematurely triggered. If the HTTP request for the font fails, this will show the default Unicode character for `"\e601"`.
 
-### Tested On (using Modernizr Feature Test)
+## Browser Support (using Modernizr Feature Test)
 
 * Chrome 31
 * Firefox 25
@@ -131,7 +129,7 @@ The fallback background-image is marginally less reliable, since it does not che
 * Android 2.3
 * Internet Explorer 8, 9, 10, 11
 
-#### Fallback Experience
+### Fallback Experience
 
 * Opera Mini
 * Windows Phone 7.5 (Note: The icon-fallback-img method fails here because of a Modernizr false positive—an issue has been filed and resolved)
