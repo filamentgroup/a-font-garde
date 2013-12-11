@@ -6,10 +6,6 @@
 			'.supports-fontface.supports-generatedcontent.%s .icon-fallback-text label { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
 			'.supports-fontface.%s .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
 
-	function init( fontFamily, sampleGlyphs) {
-		
-	}
-
 	function addEvent( type, callback ) {
 		if( 'addEventListener' in w ) {
 			return w.addEventListener( type, callback, false );
