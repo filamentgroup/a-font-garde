@@ -2,15 +2,15 @@
 	display: none;
 }
 /*
-ADDED BY JS
-.supports-fontface.fontloaded.supports-generatedcontent .icon-fallback-text .icon {
+ADDED BY afontgarde.js:
+.supports-fontface.FONT_NAME.supports-generatedcontent .icon-fallback-text .icon {
 	display: inline-block;
 }*/
 
 .icon-fallback-glyph label,
 .icon-fallback-img label/*,
-ADDED BY JS
-.supports-fontface.fontloaded.supports-generatedcontent .icon-fallback-text label*/ {
+ADDED BY afontgarde.js:
+.supports-fontface.FONT_NAME.supports-generatedcontent .icon-fallback-text label*/ {
 	/* visually hide but accessible (h5bp.com) */
 	clip: rect(0 0 0 0);
 	overflow: hidden;
@@ -28,8 +28,8 @@ ADDED BY JS
 	width: auto;
 }
 /*
-ADDED BY JS
-.supports-fontface.fontloaded .icon-fallback-glyph .icon:before {
+ADDED BY afontgarde.js:
+.supports-fontface.FONT_NAME .icon-fallback-glyph .icon:before {
 	font-size: inherit;
 	line-height: inherit;
 }*/
