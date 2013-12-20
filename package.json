@@ -1,0 +1,22 @@
+{
+  "name": "afontgarde",
+  "version": "0.1.0",
+  "description": "The safest way to use font icons.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/filamentgroup/a-font-garde.git"
+  },
+  "author": "Filament Group c/o Zach Leatherman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/filamentgroup/a-font-garde/issues"
+  },
+  "homepage": "https://github.com/filamentgroup/a-font-garde",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.0",
+    "matchdep": "~0.1.2",
+    "grunt-bytesize": "~0.1.1"
+  }
+}

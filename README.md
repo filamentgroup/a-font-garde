@@ -2,6 +2,10 @@
 
 **A set of reliable (nay, bulletproof) patterns for icon fonts.**
 
+Add `afontgarde.css` and `afontgarde.js` to your build to concat up into your web site.
+
+Also requires a `@font-face` feature test:
+
 ## Font Face Feature Tests
 
 Really, you can use these approaches with any font-face feature test that supplies the `supports-fontface` class. However, here we’re also assuming the use of Modernizr’s pseudo-elements feature test to supply `supports-generatedcontent` and `supports-no-generatedcontent` classes.
