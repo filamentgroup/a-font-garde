@@ -2,7 +2,9 @@
 
 **A set of reliable (nay, bulletproof) patterns for icon fonts.**
 
-Add `afontgarde.css` and `afontgarde.js` to your build to concat up into your web site.
+To start, you’ll probably want to **[read the Filament Group Blog Post](http://filamentgroup.com/lab/bulletproof_icon_fonts)**.
+
+Then, add `afontgarde.css` and `afontgarde.js` to your build to concat up into your web site.
 
 Also requires a `@font-face` feature test:
 
