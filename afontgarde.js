@@ -96,7 +96,7 @@
 	var doc = w.document,
 		ref,
 		css = ['.supports-fontface.supports-generatedcontent.%s .icon-fallback-text .icon { display: inline-block; }',
-			'.supports-fontface.supports-generatedcontent.%s .icon-fallback-text label { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
+			'.supports-fontface.supports-generatedcontent.%s .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
 			'.supports-fontface.%s .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
 
 	function addEvent( type, callback ) {

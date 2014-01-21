@@ -12,10 +12,10 @@ ADDED BY afontgarde.js:
 	display: inline-block;
 }*/
 
-.icon-fallback-glyph label,
-.icon-fallback-img label/*,
+.icon-fallback-glyph .text,
+.icon-fallback-img .text/*,
 ADDED BY afontgarde.js:
-.supports-fontface.FONT_NAME.supports-generatedcontent .icon-fallback-text label*/ {
+.supports-fontface.FONT_NAME.supports-generatedcontent .icon-fallback-text .text*/ {
 	/* visually hide but accessible (h5bp.com) */
 	clip: rect(0 0 0 0);
 	overflow: hidden;
@@ -25,7 +25,7 @@ ADDED BY afontgarde.js:
 }
 
 /* Careful, don’t use adjoining classes here (IE7) */
-.supports-no-generatedcontent .icon-fallback-glyph label {
+.supports-no-generatedcontent .icon-fallback-glyph .text {
 	clip: auto;
 	overflow: visible;
 	position: static;

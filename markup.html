@@ -96,22 +96,22 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 	<span class="icon-fallback-text">
 		<!-- requires an element for aria-hidden -->
 		<span class="icon icon-twitter" aria-hidden="true"></span>
-		<label>Twitter</label>
+		<span class="text">Twitter</span>
 	</span>
 	<span class="icon-fallback-text">
 		<!-- requires an element for aria-hidden -->
 		<span class="icon icon-facebook" aria-hidden="true"></span>
-		<label>Facebook</label>
+		<span class="text">Facebook</span>
 	</span>
 	<span class="icon-fallback-text">
 		<!-- requires an element for aria-hidden -->
 		<span class="icon icon-google-plus" aria-hidden="true"></span>
-		<label>Google Plus</label>
+		<span class="text">Google Plus</span>
 	</span>
 	<span class="icon-fallback-text">
 		<!-- requires an element for aria-hidden -->
 		<span class="icon icon-feed" aria-hidden="true"></span>
-		<label>RSS Feed</label>
+		<span class="text">RSS Feed</span>
 	</span>
 
 	<h3>HTML</h3>
@@ -119,13 +119,13 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 &lt;span class=&quot;icon-fallback-text&quot;&gt;
 	&lt;!-- requires an element for aria-hidden --&gt;
 	&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-	&lt;label&gt;Twitter&lt;/label&gt;
+	&lt;span class="text"&gt;Twitter&lt;/span&gt;
 &lt;/span&gt;
 	</code></pre>
 
 	<h3>Failed experiments:</h3>
 	<ul>
-		<li>Eliminate the label element and clip to just show the icon. Requires us to know the width of each glyph. It’s better to just keep the label.</li>
+		<li>Eliminate the span element and clip to just show the icon. Requires us to know the width of each glyph. It’s better to just keep the span.</li>
 	</ul>
 
 	<h2>Use Case #2: Critical Icons with Fallback Icon</h2>
@@ -134,7 +134,7 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 	<h3>Fallback to Glyph</h3>
 	<span class="icon-fallback-glyph">
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
-		<label>Menu</label>
+		<span class="text">Menu</span>
 	</span>
 
 	<p>Warning: In browsers that don’t support :before/:after (IE6-7), fallback is text.</p>
@@ -143,7 +143,7 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 	<pre><code>
 &lt;span class=&quot;icon-fallback-glyph&quot;&gt;
 	&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-	&lt;label&gt;Menu&lt;/label&gt;
+	&lt;span class="text"&gt;Menu&lt;/span&gt;
 &lt;/span&gt;
 	</code></pre>
 
@@ -151,14 +151,14 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 	<p>Fixed colors, must know the size of the glyph, requires `background-size` to resize.</p>
 	<span class="icon-fallback-img">
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
-		<label>Menu</label>
+		<span class="text">Menu</span>
 	</span>
 
 	<h4>HTML</h4>
 	<pre><code>
 &lt;span class=&quot;icon-fallback-img&quot;&gt;
 	&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-	&lt;label&gt;Menu&lt;/label&gt;
+	&lt;span class="text"&gt;Menu&lt;/span&gt;
 &lt;/span&gt;
 	</code></pre>
 

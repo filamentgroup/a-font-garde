@@ -41,7 +41,7 @@ Really, you can use these approaches with any font-face feature test that suppli
 	<span class="icon icon-twitter" aria-hidden="true"></span>
 	Share on Twitter (Sibling Text)
 
-Make sure you use sibling text here for labels—don’t nest the text inside of the icon `span`. We need `aria-hidden` on the icon to make sure it is not read aloud by screen readers.
+Make sure you use sibling text here for labeling text—don’t nest the text inside of the icon `span`. We need `aria-hidden` on the icon to make sure it is not read aloud by screen readers.
 
 ### CSS
 
@@ -66,7 +66,7 @@ If the icon fails, the text must show. Otherwise hide it.
 	<span class="icon-fallback-text">
 		<!-- requires an element for aria-hidden -->
 		<span class="icon icon-glyph" aria-hidden="true"></span>
-		<label>Fallback Text</label>
+		<span class="text">Fallback Text</span>
 	</span>
 
 ### CSS
@@ -81,7 +81,7 @@ If the icon fails, a fallback icon is shown. Otherwise hide the default icon.
 
 	<span class="icon-fallback-glyph">
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
-		<label>Menu</label>
+		<span class="text">Menu</span>
 	</span>
 
 ### CSS for fallback to Unicode Glyph
@@ -104,7 +104,7 @@ Choose your fallback glyph character with care. Cross-browser/platform compatibi
 	<!-- Fallback to Background Image -->
 	<span class="icon-fallback-img">
 		<span class="icon icon-hamburger" aria-hidden="true"></span>
-		<label>Menu</label>
+		<span class="text">Menu</span>
 	</span>
 
 ### CSS for fallback to Bitmap
