@@ -14,7 +14,7 @@ Really, you can use these approaches with any font-face feature test that suppli
 
 * Modernizr
 * [Mat’s `face-off`](https://github.com/filamentgroup/face-off)
-* [Pixel Ambracht](http://pixelambacht.nl/2013/font-face-render-check/): Careful if you support IE8. This test requires an external request and thus may have a race condition for if you’re using background-image for a fallback.
+* [Pixel Ambacht](http://pixelambacht.nl/2013/font-face-render-check/): Careful if you support IE8. This test requires an external request and thus may have a race condition for if you’re using background-image for a fallback.
 
 ## Uses Cases:
 
