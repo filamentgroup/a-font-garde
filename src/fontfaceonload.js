@@ -31,11 +31,13 @@
 				},
 				startTime = new Date();
 
-			if( options ) {
-				for( var j in options ) {
-					if( options.hasOwnProperty( j ) ) {
-						defaultOptions[ j ] = options[ j ];
-					}
+			if( !options ) {
+				options = {};
+			}
+
+			for( var j in defaultOptions ) {
+				if( !options.hasOwnProperty( j ) ) {
+					options[ j ] = defaultOptions[ j ];
 				}
 			}
 

@@ -36,11 +36,13 @@
 				},
 				startTime = new Date();
 
-			if( options ) {
-				for( var j in options ) {
-					if( options.hasOwnProperty( j ) ) {
-						defaultOptions[ j ] = options[ j ];
-					}
+			if( !options ) {
+				options = {};
+			}
+
+			for( var j in defaultOptions ) {
+				if( !options.hasOwnProperty( j ) ) {
+					options[ j ] = defaultOptions[ j ];
 				}
 			}
 
@@ -109,7 +111,9 @@
 	}
 
 	AFontGarde = function( fontFamily, sampleGlyphs ) {
-		var executed = false;
+		var fontFamilyClassName = fontFamily.toLowerCase().replace( /\s/g, '' ),
+			executed = false;
+
 		function init() {
 			if( executed ) {
 				return;
@@ -124,7 +128,7 @@
 				ref = doc.getElementsByTagName( 'script' )[ 0 ];
 			}
 			var style = doc.createElement( 'style' );
-			style.innerHTML = css.join( '\n' ).replace( /\%s/gi, fontFamily );
+			style.innerHTML = css.join( '\n' ).replace( /\%s/gi, fontFamilyClassName );
 			ref.parentNode.insertBefore( style, ref );
 
 			FontFaceOnload( fontFamily, {
@@ -133,7 +137,7 @@
 				timeout: 5000,
 				success: function() {
 					// If you’re using more than one icon font, change this classname (and in a-font-garde.css)
-					doc.documentElement.className += ' ' + fontFamily;
+					doc.documentElement.className += ' ' + fontFamilyClassName;
 				}
 			});
 		}

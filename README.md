@@ -48,7 +48,6 @@ Make sure you use sibling text here for labeling text—don’t nest the text in
 	.supports-fontface.fontloaded .icon:before {
 		font-family: icomoon;
 	}
-	/* Icons */
 	.supports-fontface.fontloaded .icon-twitter:before {
 		content: "\e604";
 	}
@@ -64,7 +63,6 @@ If the icon fails, the text must show. Otherwise hide it.
 ### HTML
 
 	<span class="icon-fallback-text">
-		<!-- requires an element for aria-hidden -->
 		<span class="icon icon-glyph" aria-hidden="true"></span>
 		<span class="text">Fallback Text</span>
 	</span>
@@ -124,6 +122,16 @@ Choose your fallback glyph character with care. Cross-browser/platform compatibi
 
 The fallback background-image is marginally less reliable, since it does not check to make sure the icon font has successfully loaded. We do this so that the background-image request will not be prematurely triggered. If the HTTP request for the font fails, this will show the default Unicode character for `"\e601"`.
 
+## JavaScript
+
+The JavaScript adds the appropriate classes to make sure that the font has loaded.
+
+```
+AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
+```
+
+The first argument is the name of the `font-family`. The second argument is a few of the glyphs contained in the new font. We measure these characters to make sure the font has loaded successfully.
+
 ## Browser Support (using Modernizr Feature Test)
 
 * Chrome 31
@@ -144,7 +152,9 @@ The fallback background-image is marginally less reliable, since it does not che
 * Blackberry OS 6 (technically supports SVG @font-face, but it’s horribly buggy. So we isolate the SVG entry to newer WebKit and opt into the fallback experience)
 * Internet Explorer 7 (Exception: The icon-fallback-glyph method falls back to text instead of an image due to a lack of :before/:after support)
 
-## Changing the `supports-` CSS Prefix
+## Options
+
+### Changing the `supports-` CSS Prefix
 
 To use a different CSS Prefix without editing the raw JS and CSS manually, you can optionally clone the repository and change the configuration setting in `package.json`.
 
