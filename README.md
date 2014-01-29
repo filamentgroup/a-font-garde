@@ -53,7 +53,7 @@ Make sure you use sibling text here for labeling text—don’t nest the text in
 		content: "\e604";
 	}
 
-Here, we’re using Modernizr (with the `supports-` classes prefix) tests for `fontface` and `generatedcontent`.
+Here, we’re using Modernizr (with the `supports-` classes prefix) tests for `fontface` and `generatedcontent`. The `supports-` prefix is configurable in `package.json`—see the “Changing the CSS Prefix” section below for more information.
 
 The `fontloaded` class is added by the FontFaceOnload script, which checks to make sure the Icomoon font has successfully loaded (just because a browser supports font-face doesn’t mean the request will succeed).
 
@@ -144,4 +144,14 @@ The fallback background-image is marginally less reliable, since it does not che
 * Blackberry OS 6 (technically supports SVG @font-face, but it’s horribly buggy. So we isolate the SVG entry to newer WebKit and opt into the fallback experience)
 * Internet Explorer 7 (Exception: The icon-fallback-glyph method falls back to text instead of an image due to a lack of :before/:after support)
 
+## Changing the `supports-` CSS Prefix
 
+To use a different CSS Prefix without editing the raw JS and CSS manually, you can optionally clone the repository and change the configuration setting in `package.json`.
+
+```
+  "config": {
+    "cssprefix": "supports-"
+  }
+```
+
+Modify with your own CSS prefix and run `grunt` to generate new `afontgarde.css` and `afontgarde.js` files.

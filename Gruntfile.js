@@ -7,11 +7,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		// Metadata.
 		pkg: grunt.file.readJSON('package.json'),
-		banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-			'<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-			'<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-			'* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-			'* Licensed <%= pkg.license %> */\n',
+		banner: grunt.file.read( 'src/banner' ),
 		jshint: {
 			gruntfile: {
 				options: {
@@ -40,12 +36,48 @@ module.exports = function(grunt) {
 					'<%= pkg.name %>.js'
 				]
 			}
+		},
+		concat: {
+			options: {
+				stripBanners: false,
+				banner: '<%= banner %>'
+			},
+			js: {
+				src: [ 'src/fontfaceonload.js', 'src/<%= pkg.name %>.tmpl.js' ],
+				dest: '<%= pkg.name %>.js'
+			},
+			css: {
+				src: [ 'src/<%= pkg.name %>.tmpl.css' ],
+				dest: '<%= pkg.name %>.css'
+			}
+		},
+		replace: {
+			dist: {
+				options: {
+					patterns: [
+						{
+							match: /\{\{(\w*)\}\}/g,
+							replacement: function( match, key ) {
+								return grunt.template.process( "<%= pkg.config." + key + " %>" );
+							}
+						}
+					]
+				},
+				files: [
+					{
+						expand: true,
+						flatten: true,
+						src: [ '<%= pkg.name %>.css', '<%= pkg.name %>.js' ],
+						dest: './'
+					}
+				]
+			}
 		}
 	});
 
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'bytesize:src']);
+	grunt.registerTask('default', ['jshint', 'concat', 'replace', 'bytesize:src']);
 
 };
