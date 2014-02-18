@@ -1,4 +1,4 @@
-/*! afontgarde - v0.1.0 - 2014-01-29
+/*! afontgarde - v0.1.1 - 2014-02-18
  * https://github.com/filamentgroup/a-font-garde
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
@@ -98,9 +98,9 @@
 
 	var doc = w.document,
 		ref,
-		css = ['.supports-fontface.supports-generatedcontent.%s .icon-fallback-text .icon { display: inline-block; }',
-			'.supports-fontface.supports-generatedcontent.%s .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
-			'.supports-fontface.%s .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
+		css = ['.supports-fontface.supports-generatedcontent.FONT_NAME .icon-fallback-text .icon { display: inline-block; }',
+			'.supports-fontface.supports-generatedcontent.FONT_NAME .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
+			'.supports-fontface.FONT_NAME .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
 
 	function addEvent( type, callback ) {
 		if( 'addEventListener' in w ) {
@@ -127,8 +127,15 @@
 			if( !ref ) {
 				ref = doc.getElementsByTagName( 'script' )[ 0 ];
 			}
-			var style = doc.createElement( 'style' );
-			style.innerHTML = css.join( '\n' ).replace( /\%s/gi, fontFamilyClassName );
+			var style = doc.createElement( 'style' ),
+				cssContent = css.join( '\n' ).replace( /FONT_NAME/gi, fontFamilyClassName );
+
+			style.setAttribute( 'type', 'text/css' );
+			if( style.styleSheet ) {
+				style.styleSheet.cssText = cssContent;
+			} else {
+				style.appendChild( doc.createTextNode( cssContent ) );
+			}
 			ref.parentNode.insertBefore( style, ref );
 
 			FontFaceOnload( fontFamily, {

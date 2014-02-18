@@ -6,9 +6,9 @@
 
 	var doc = w.document,
 		ref,
-		css = ['.{{cssprefix}}fontface.{{cssprefix}}generatedcontent.%s .icon-fallback-text .icon { display: inline-block; }',
-			'.{{cssprefix}}fontface.{{cssprefix}}generatedcontent.%s .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
-			'.{{cssprefix}}fontface.%s .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
+		css = ['.{{cssprefix}}fontface.{{cssprefix}}generatedcontent.FONT_NAME .icon-fallback-text .icon { display: inline-block; }',
+			'.{{cssprefix}}fontface.{{cssprefix}}generatedcontent.FONT_NAME .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
+			'.{{cssprefix}}fontface.FONT_NAME .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
 
 	function addEvent( type, callback ) {
 		if( 'addEventListener' in w ) {
@@ -35,8 +35,15 @@
 			if( !ref ) {
 				ref = doc.getElementsByTagName( 'script' )[ 0 ];
 			}
-			var style = doc.createElement( 'style' );
-			style.innerHTML = css.join( '\n' ).replace( /\%s/gi, fontFamilyClassName );
+			var style = doc.createElement( 'style' ),
+				cssContent = css.join( '\n' ).replace( /FONT_NAME/gi, fontFamilyClassName );
+
+			style.setAttribute( 'type', 'text/css' );
+			if( style.styleSheet ) {
+				style.styleSheet.cssText = cssContent;
+			} else {
+				style.appendChild( doc.createTextNode( cssContent ) );
+			}
 			ref.parentNode.insertBefore( style, ref );
 
 			FontFaceOnload( fontFamily, {
