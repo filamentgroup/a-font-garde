@@ -1,4 +1,4 @@
-/*! afontgarde - v0.1.1 - 2014-02-18
+/*! afontgarde - v0.1.2 - 2014-05-20
  * https://github.com/filamentgroup/a-font-garde
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
@@ -8,14 +8,14 @@
 }
 /*
 ADDED BY afontgarde.js:
-.supports-fontface.FONT_NAME.supports-generatedcontent .icon-fallback-text .icon {
+.FONT_NAME.supports-generatedcontent .icon-fallback-text .icon {
 	display: inline-block;
 }*/
 
-.icon-fallback-glyph .text,
-.icon-fallback-img .text/*,
+.icon-fallback-img .text,
+.icon-fallback-glyph .text/*,
 ADDED BY afontgarde.js:
-.supports-fontface.FONT_NAME.supports-generatedcontent .icon-fallback-text .text*/ {
+.FONT_NAME.supports-generatedcontent .icon-fallback-text .text*/ {
 	/* visually hide but accessible (h5bp.com) */
 	clip: rect(0 0 0 0);
 	overflow: hidden;
@@ -34,7 +34,7 @@ ADDED BY afontgarde.js:
 }
 /*
 ADDED BY afontgarde.js:
-.supports-fontface.FONT_NAME .icon-fallback-glyph .icon:before {
+.FONT_NAME .icon-fallback-glyph .icon:before {
 	font-size: inherit;
 	line-height: inherit;
 }*/

@@ -14,7 +14,6 @@
 
 	@font-face {
 		font-family: icomoon;
-		src:url('fonts/icomoon.eot');
 		src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
 			url('fonts/icomoon.ttf') format('truetype'),
 			url('fonts/icomoon.woff') format('woff');
@@ -31,26 +30,28 @@
 		@font-face {
 			font-family: icomoon;
 			src: url('fonts/icomoon.svg#icomoon') format('svg');
+			font-weight: normal;
+			font-style: normal;
 		}
 	}
 
 	/***************************
 	 * A-Grade Icons
 	 ***************************/
-	.supports-fontface.icomoon .icon:before {
+	.icomoon .icon:before {
 		font-family: icomoon;
 	}
 	/* Icons */
-	.supports-fontface.icomoon .icon-twitter:before {
+	.icomoon .icon-twitter:before {
 		content: "\e604";
 	}
-	.supports-fontface.icomoon .icon-google-plus:before {
+	.icomoon .icon-google-plus:before {
 		content: "\e600";
 	}
-	.supports-fontface.icomoon .icon-facebook:before {
+	.icomoon .icon-facebook:before {
 		content: "\e602";
 	}
-	.supports-fontface.icomoon .icon-feed:before {
+	.icomoon .icon-feed:before {
 		content: "\e605";
 	}
 
@@ -63,22 +64,7 @@
 		line-height: .5;
 	}
 	/* A-Grade */
-	.supports-fontface.icomoon .icon-fallback-glyph .icon-hamburger:before {
-		content: "\e601";
-	}
-
-	/***************************
-	 * Fallback Bitmap
-	 ***************************/
-	.icon-fallback-img .icon-hamburger {
-		width: 1em;
-		height: 1em;
-		/* Note: BB5 doesn’t support background-images on pseudo-elements */
-		background: url("fonts/png/hamburger.png") no-repeat;
-	}
-	/* A-Grade */
-	.supports-fontface .icon-fallback-img .icon-hamburger:before {
-		font-family: icomoon;
+	.icomoon .icon-fallback-glyph .icon-hamburger:before {
 		content: "\e601";
 	}
 </style>
@@ -147,26 +133,6 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 &lt;/span&gt;
 	</code></pre>
 
-	<h3>Fallback to Image</h3>
-	<p>Fixed colors, must know the size of the glyph, requires `background-size` to resize.</p>
-	<span class="icon-fallback-img">
-		<span class="icon icon-hamburger" aria-hidden="true"></span>
-		<span class="text">Menu</span>
-	</span>
-
-	<h4>HTML</h4>
-	<pre><code>
-&lt;span class=&quot;icon-fallback-img&quot;&gt;
-	&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-	&lt;span class="text"&gt;Menu&lt;/span&gt;
-&lt;/span&gt;
-	</code></pre>
-
-	<h3>Failed experiments:</h3>
-	<ul>
-		<li>In an attempt to remove reliance on :before/:after, we could just put the icon character in the <code>&lt;span class="icon"&gt;</code> content.  But in order to replace the content with a fallback glyph we need it in CSS.</li>
-	</ul>
-
 	<h2>Use Case #3: Decorative Icon without Fallback</h2>
 	<p>Shows supplementary text, does not need fallback experience without the icon.</p>
 
@@ -179,9 +145,5 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 Share on Twitter (Sibling Text)
 	</code></pre>
 
-	<h2>Bad Examples (For Testing Only)</h2>
-	<h3>Decorative Icon without Fallback (Nested Text)</h3>
-	<p>If you nest the text, the icon may confuse screen readers (unable to use aria-hidden).</p>
-	<span class="icon icon-twitter">Share on Twitter (Nested Text)</span>
 </body>
 </html>

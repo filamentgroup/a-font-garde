@@ -1,4 +1,4 @@
-/*! afontgarde - v0.1.1 - 2014-02-18
+/*! afontgarde - v0.1.2 - 2014-05-20
  * https://github.com/filamentgroup/a-font-garde
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
@@ -98,9 +98,9 @@
 
 	var doc = w.document,
 		ref,
-		css = ['.supports-fontface.supports-generatedcontent.FONT_NAME .icon-fallback-text .icon { display: inline-block; }',
-			'.supports-fontface.supports-generatedcontent.FONT_NAME .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
-			'.supports-fontface.FONT_NAME .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
+		css = ['.supports-generatedcontent.FONT_NAME .icon-fallback-text .icon { display: inline-block; }',
+			'.supports-generatedcontent.FONT_NAME .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
+			'.FONT_NAME .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
 
 	function addEvent( type, callback ) {
 		if( 'addEventListener' in w ) {

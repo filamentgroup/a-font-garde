@@ -6,9 +6,9 @@
 
 	var doc = w.document,
 		ref,
-		css = ['.{{cssprefix}}fontface.{{cssprefix}}generatedcontent.FONT_NAME .icon-fallback-text .icon { display: inline-block; }',
-			'.{{cssprefix}}fontface.{{cssprefix}}generatedcontent.FONT_NAME .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
-			'.{{cssprefix}}fontface.FONT_NAME .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
+		css = ['.{{cssprefix}}generatedcontent.FONT_NAME .icon-fallback-text .icon { display: inline-block; }',
+			'.{{cssprefix}}generatedcontent.FONT_NAME .icon-fallback-text .text { clip: rect(0 0 0 0); overflow: hidden; position: absolute; height: 1px; width: 1px; }',
+			'.FONT_NAME .icon-fallback-glyph .icon:before { font-size: inherit; line-height: inherit; }'];
 
 	function addEvent( type, callback ) {
 		if( 'addEventListener' in w ) {
