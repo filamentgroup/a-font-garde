@@ -95,10 +95,12 @@ The first argument is the name of the `font-family`. The second argument is a fe
 
 ## Browser Support
 
-* Chrome 31
-* Firefox 25
+These browsers were tested, full browser support is more comprehensive:
+
+* Chrome 34
+* Firefox 29
 * Safari 7
-* iOS 7 Safari
+* iOS 6, iOS 7 Mobile Safari
 * Opera 12
 * Blackberry OS 7
 * Android 2.3
