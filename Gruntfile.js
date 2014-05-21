@@ -27,6 +27,10 @@ module.exports = function(grunt) {
 			lib_test: {
 				files: '<%= jshint.lib.src %>',
 				tasks: ['jshint:lib']
+			},
+			src: {
+				files: [ '<%= concat.js.src %>', '<%= concat.css.src %>' ],
+				tasks: [ 'concat', 'replace' ]
 			}
 		},
 		bytesize: {
