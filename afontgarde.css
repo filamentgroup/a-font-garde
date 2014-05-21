@@ -1,4 +1,4 @@
-/*! afontgarde - v0.1.2 - 2014-05-20
+/*! afontgarde - v0.1.3 - 2014-05-21
  * https://github.com/filamentgroup/a-font-garde
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
@@ -8,6 +8,8 @@
 }
 /*
 ADDED BY afontgarde.js:
+Note: sure .FONT_NAME comes first for adjoining classes bug in IE7.
+
 .FONT_NAME.supports-generatedcontent .icon-fallback-text .icon {
 	display: inline-block;
 }*/
@@ -15,6 +17,8 @@ ADDED BY afontgarde.js:
 .icon-fallback-img .text,
 .icon-fallback-glyph .text/*,
 ADDED BY afontgarde.js:
+Note: sure .FONT_NAME comes first for adjoining classes bug in IE7.
+
 .FONT_NAME.supports-generatedcontent .icon-fallback-text .text*/ {
 	/* visually hide but accessible (h5bp.com) */
 	clip: rect(0 0 0 0);
@@ -35,7 +39,10 @@ ADDED BY afontgarde.js:
 /*
 ADDED BY afontgarde.js:
 .FONT_NAME .icon-fallback-glyph .icon:before {
+	// inherit for font-size, line-height was not working on IE8
+	font-size: 1em;
 	font-size: inherit;
+	line-height: 1;
 	line-height: inherit;
 }*/
 .icon-fallback-img .icon {
