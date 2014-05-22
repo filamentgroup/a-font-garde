@@ -1,6 +1,6 @@
 # A Font Garde
 
-[![Filament Group](http://filamentgroup.com/images/fg-logo-positive-tiny.png) ](http://www.filamentgroup.com/)
+[![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
 
 **A set of reliable (nay, bulletproof) patterns for icon fonts.**
 
