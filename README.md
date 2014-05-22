@@ -1,5 +1,7 @@
 # A Font Garde
 
+[![Filament Group](http://filamentgroup.com/images/fg-logo-positive-tiny.png) ](http://www.filamentgroup.com/)
+
 **A set of reliable (nay, bulletproof) patterns for icon fonts.**
 
 To start, you’ll probably want to **[read the Filament Group Blog Post](http://filamentgroup.com/lab/bulletproof_icon_fonts)**.
