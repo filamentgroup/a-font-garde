@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Icon Fonts</title>
+<link rel="stylesheet" href="docs.css">
 <link rel="stylesheet" href="afontgarde.css">
 <style>
 	body {
@@ -76,74 +77,79 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 </script>
 </head>
 <body>
-	<h2>Use Case #1: Critical Icons with Fallback Text</h2>
-	<p>Doesn’t show supplementary text, but must show fallback text without the icon. Supplementary text is still available to screen readers.<p>
+	<div class="header">
+		<a href="http://filamentgroup.com/"><h1 id="fg-logo">Filament Group</h1></a>
+	</div>
+	<div class="docs-main">
+		<h2>Use Case #1: Critical Icons with Fallback Text</h2>
+		<p>Doesn’t show supplementary text, but must show fallback text without the icon. Supplementary text is still available to screen readers.<p>
 
-	<span class="icon-fallback-text">
-		<!-- requires an element for aria-hidden -->
+		<span class="icon-fallback-text">
+			<!-- requires an element for aria-hidden -->
+			<span class="icon icon-twitter" aria-hidden="true"></span>
+			<span class="text">Twitter</span>
+		</span>
+		<span class="icon-fallback-text">
+			<!-- requires an element for aria-hidden -->
+			<span class="icon icon-facebook" aria-hidden="true"></span>
+			<span class="text">Facebook</span>
+		</span>
+		<span class="icon-fallback-text">
+			<!-- requires an element for aria-hidden -->
+			<span class="icon icon-google-plus" aria-hidden="true"></span>
+			<span class="text">Google Plus</span>
+		</span>
+		<span class="icon-fallback-text">
+			<!-- requires an element for aria-hidden -->
+			<span class="icon icon-feed" aria-hidden="true"></span>
+			<span class="text">RSS Feed</span>
+		</span>
+
+		<h3>HTML</h3>
+		<pre><code>
+	&lt;span class=&quot;icon-fallback-text&quot;&gt;
+		&lt;!-- requires an element for aria-hidden --&gt;
+		&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+		&lt;span class="text"&gt;Twitter&lt;/span&gt;
+	&lt;/span&gt;
+		</code></pre>
+
+		<h3>Failed experiments:</h3>
+		<ul>
+			<li>Eliminate the span element and clip to just show the icon. Requires us to know the width of each glyph. It’s better to just keep the span.</li>
+		</ul>
+
+		<h2>Use Case #2: Critical Icons with Fallback Icon</h2>
+		<p>Doesn’t show supplementary text, must show fallback icon without the primary icon. This can be a background image or a Unicode glyph. Supplementary text is still available to screen readers.<p>
+
+		<h3>Fallback to Glyph</h3>
+		<span class="icon-fallback-glyph">
+			<span class="icon icon-hamburger" aria-hidden="true"></span>
+			<span class="text">Menu</span>
+		</span>
+
+		<p>Warning: In browsers that don’t support :before/:after (IE6-7), fallback is text.</p>
+
+		<h4>HTML</h4>
+		<pre><code>
+	&lt;span class=&quot;icon-fallback-glyph&quot;&gt;
+		&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+		&lt;span class="text"&gt;Menu&lt;/span&gt;
+	&lt;/span&gt;
+		</code></pre>
+
+		<h2>Use Case #3: Decorative Icon without Fallback</h2>
+		<p>Shows supplementary text, does not need fallback experience without the icon.</p>
+
 		<span class="icon icon-twitter" aria-hidden="true"></span>
-		<span class="text">Twitter</span>
-	</span>
-	<span class="icon-fallback-text">
-		<!-- requires an element for aria-hidden -->
-		<span class="icon icon-facebook" aria-hidden="true"></span>
-		<span class="text">Facebook</span>
-	</span>
-	<span class="icon-fallback-text">
-		<!-- requires an element for aria-hidden -->
-		<span class="icon icon-google-plus" aria-hidden="true"></span>
-		<span class="text">Google Plus</span>
-	</span>
-	<span class="icon-fallback-text">
-		<!-- requires an element for aria-hidden -->
-		<span class="icon icon-feed" aria-hidden="true"></span>
-		<span class="text">RSS Feed</span>
-	</span>
+		Share on Twitter (Sibling Text)
 
-	<h3>HTML</h3>
-	<pre><code>
-&lt;span class=&quot;icon-fallback-text&quot;&gt;
-	&lt;!-- requires an element for aria-hidden --&gt;
+		<h3>HTML</h4>
+		<pre><code>
 	&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-	&lt;span class="text"&gt;Twitter&lt;/span&gt;
-&lt;/span&gt;
-	</code></pre>
-
-	<h3>Failed experiments:</h3>
-	<ul>
-		<li>Eliminate the span element and clip to just show the icon. Requires us to know the width of each glyph. It’s better to just keep the span.</li>
-	</ul>
-
-	<h2>Use Case #2: Critical Icons with Fallback Icon</h2>
-	<p>Doesn’t show supplementary text, must show fallback icon without the primary icon. This can be a background image or a Unicode glyph. Supplementary text is still available to screen readers.<p>
-
-	<h3>Fallback to Glyph</h3>
-	<span class="icon-fallback-glyph">
-		<span class="icon icon-hamburger" aria-hidden="true"></span>
-		<span class="text">Menu</span>
-	</span>
-
-	<p>Warning: In browsers that don’t support :before/:after (IE6-7), fallback is text.</p>
-
-	<h4>HTML</h4>
-	<pre><code>
-&lt;span class=&quot;icon-fallback-glyph&quot;&gt;
-	&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-	&lt;span class="text"&gt;Menu&lt;/span&gt;
-&lt;/span&gt;
-	</code></pre>
-
-	<h2>Use Case #3: Decorative Icon without Fallback</h2>
-	<p>Shows supplementary text, does not need fallback experience without the icon.</p>
-
-	<span class="icon icon-twitter" aria-hidden="true"></span>
 	Share on Twitter (Sibling Text)
-
-	<h3>HTML</h4>
-	<pre><code>
-&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-Share on Twitter (Sibling Text)
-	</code></pre>
+		</code></pre>
+	</div>
 
 </body>
 </html>
