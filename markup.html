@@ -22,6 +22,10 @@
 		}
 	}
 
+	pre {
+		white-space: pre-line;
+	}
+
 	@font-face {
 		font-family: icomoon;
 		src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
@@ -130,11 +134,11 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 
 		<h3>HTML</h3>
 		<pre><code>
-	&lt;span class=&quot;icon-fallback-text&quot;&gt;
-		&lt;!-- requires an element for aria-hidden --&gt;
-		&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-		&lt;span class="text"&gt;Twitter&lt;/span&gt;
-	&lt;/span&gt;
+&lt;span class=&quot;icon-fallback-text&quot;&gt;
+	&lt;!-- requires an element for aria-hidden --&gt;
+	&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;span class="text"&gt;Twitter&lt;/span&gt;
+&lt;/span&gt;
 		</code></pre>
 
 		<h3>Failed experiments:</h3>
@@ -154,12 +158,12 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 		<p>Warning: In browsers that don’t support :before/:after (IE6-7), fallback is text.</p>
 
 		<h4>HTML</h4>
-		<pre><code>
-	&lt;span class=&quot;icon-fallback-glyph&quot;&gt;
-		&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-		&lt;span class="text"&gt;Menu&lt;/span&gt;
-	&lt;/span&gt;
-		</code></pre>
+	<pre><code>
+&lt;span class=&quot;icon-fallback-glyph&quot;&gt;
+	&lt;span class=&quot;icon icon-hamburger&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+	&lt;span class="text"&gt;Menu&lt;/span&gt;
+&lt;/span&gt;
+	</code></pre>
 
 		<h2>Use Case #3: Decorative Icon without Fallback</h2>
 		<p>Shows supplementary text, does not need fallback experience without the icon.</p>
@@ -168,10 +172,10 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 		Share on Twitter (Sibling Text)
 
 		<h3>HTML</h4>
-		<pre><code>
-	&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-	Share on Twitter (Sibling Text)
-		</code></pre>
+	<pre><code>
+&lt;span class=&quot;icon icon-twitter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+Share on Twitter (Sibling Text)
+	</code></pre>
 	</div>
 
 </body>
