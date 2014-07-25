@@ -1,4 +1,4 @@
-/*! afontgarde - v0.1.3 - 2014-05-21
+/*! afontgarde - v0.1.3 - 2014-07-25
  * https://github.com/filamentgroup/a-font-garde
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
