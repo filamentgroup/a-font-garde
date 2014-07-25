@@ -50,12 +50,6 @@
 		content: "\e601";
 	}
 </style>
-<!-- <script src="lib/faceoff.js"></script> -->
-<script src="lib/modernizr.fontface-generatedcontent.js"></script>
-<script src="afontgarde.js"></script>
-<script>
-AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
-</script>
 </head>
 <body>
 	<h3>Fallback to Image</h3>
@@ -78,5 +72,10 @@ AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 		<li>In an attempt to remove reliance on :before/:after, we could just put the icon character in the <code>&lt;span class="icon"&gt;</code> content.  But in order to replace the content with a fallback glyph we need it in CSS.</li>
 	</ul>
 
+	<script src="lib/modernizr.fontface-generatedcontent.js"></script>
+	<script src="afontgarde.js"></script>
+	<script>
+	AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
+	</script>
 </body>
 </html>
