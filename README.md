@@ -93,6 +93,16 @@ The JavaScript adds the appropriate classes to make sure that the font has loade
 AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
 ```
 
+### Full options list
+```
+AFontGarde( 'icomoon', {
+	glyphs: '\uE600\uE601\uE602\uE605',
+	success: function() {},
+	error: function() {},
+	timeout: 10000
+});
+```
+
 The first argument is the name of the `font-family`. The second argument is a few of the glyphs contained in the new font. We measure these characters to make sure the font has loaded successfully.
 
 ## Browser Support
