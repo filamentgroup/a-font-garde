@@ -18,7 +18,7 @@
 		}
 	}
 
-	AFontGarde = function( fontFamily, sampleGlyphs ) {
+	AFontGarde = function( fontFamily, options ) {
 		var fontFamilyClassName = fontFamily.toLowerCase().replace( /\s/g, '' ),
 			executed = false;
 
@@ -46,15 +46,30 @@
 			}
 			ref.parentNode.insertBefore( style, ref );
 
-			FontFaceOnload( fontFamily, {
-				// These characters are a few of the glyphs from the font above */
-				glyphs: sampleGlyphs || '',
+			var opts = {
 				timeout: 5000,
 				success: function() {
 					// If you’re using more than one icon font, change this classname (and in a-font-garde.css)
 					doc.documentElement.className += ' ' + fontFamilyClassName;
+
+					if( options && options.success ) {
+						options.success();
+					}
 				}
-			});
+			};
+
+			// These characters are a few of the glyphs from the font above */
+			if( typeof options === "string" ) {
+				opts.glyphs = opts;
+			} else {
+				for( var j in options ) {
+					if( options.hasOwnProperty( j ) && j !== "success" ) {
+						opts[ j ] = options;
+					}
+				}
+			}
+
+			FontFaceOnload( fontFamily, opts);
 		}
 
 		// MIT credit: filamentgroup/shoestring

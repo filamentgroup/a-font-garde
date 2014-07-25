@@ -173,7 +173,13 @@ Share on Twitter (Sibling Text)
 	<script src="lib/modernizr.fontface-generatedcontent.js"></script>
 	<script src="afontgarde.js"></script>
 	<script>
-	AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
+	// AFontGarde( 'icomoon', '\uE600\uE601\uE602\uE605' );
+	AFontGarde( 'icomoon', {
+		glyphs: '\uE600\uE601\uE602\uE605',
+		success: function() { console.log( 'success' ); },
+		error: function() { console.log( 'timeout error' ); },
+		timeout: 10000
+	});
 	</script>
 	<script src="/demo-head/loadfont.js"></script>
 </body>
