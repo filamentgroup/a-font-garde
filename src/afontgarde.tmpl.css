@@ -40,13 +40,13 @@ ADDED BY afontgarde.js:
 	line-height: 1;
 	line-height: inherit;
 }*/
-.icon-fallback-img .icon {
+.icon-fallback-img .{{iconclass}} {
 	display: inline-block;
 }
-.icon-fallback-img .icon:before {
+.icon-fallback-img .{{iconclass}}:before {
 	content: "";
 }
 /* The img fallback version is not as reliable since it does not check to make sure the fontloaded font has loaded. If we did add the .fontloaded class, it would unnecessarily request the fallback image. */
-.{{cssprefix}}fontface.{{cssprefix}}generatedcontent .icon-fallback-img .icon {
+.{{cssprefix}}fontface.{{cssprefix}}generatedcontent .icon-fallback-img .{{iconclass}} {
 	background-image: none;
 }

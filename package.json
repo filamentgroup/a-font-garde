@@ -23,6 +23,7 @@
     "grunt-gh-pages": "~0.9.1"
   },
   "config": {
-    "cssprefix": "supports-"
+    "cssprefix": "supports-",
+    "iconclass": "icon"
   }
 }
