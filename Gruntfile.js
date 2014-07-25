@@ -57,7 +57,7 @@ module.exports = function(grunt) {
 		},
 		'gh-pages': {
 			options: {},
-			src: ['*.js', '*.css', '*.html', 'lib/*', 'fonts/**/*' ]
+			src: ['.gitignore', '*.js', '*.css', '*.html', 'lib/*', 'fonts/**/*' ]
 		},
 		replace: {
 			dist: {
