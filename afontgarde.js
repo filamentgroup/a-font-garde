@@ -110,6 +110,7 @@
 		}
 	}
 
+	// options can be a string of glyphs or an options object to pass into FontFaceOnload
 	AFontGarde = function( fontFamily, options ) {
 		var fontFamilyClassName = fontFamily.toLowerCase().replace( /\s/g, '' ),
 			executed = false;
@@ -152,16 +153,16 @@
 
 			// These characters are a few of the glyphs from the font above */
 			if( typeof options === "string" ) {
-				opts.glyphs = opts;
+				opts.glyphs = options;
 			} else {
 				for( var j in options ) {
 					if( options.hasOwnProperty( j ) && j !== "success" ) {
-						opts[ j ] = options;
+						opts[ j ] = options[ j ];
 					}
 				}
 			}
 
-			FontFaceOnload( fontFamily, opts);
+			FontFaceOnload( fontFamily, opts );
 		}
 
 		// MIT credit: filamentgroup/shoestring
