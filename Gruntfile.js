@@ -55,6 +55,10 @@ module.exports = function(grunt) {
 				dest: '<%= pkg.name %>.css'
 			}
 		},
+		'gh-pages': {
+			options: {},
+			src: ['*.js', '*.css', '*.html', 'lib/*', 'fonts/**/*' ]
+		},
 		replace: {
 			dist: {
 				options: {
