@@ -1,13 +1,16 @@
-/*! afontgarde - v0.1.3 - 2014-07-25
+/*! afontgarde - v0.1.4 - 2014-08-04
  * https://github.com/filamentgroup/a-font-garde
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
 
-/*
- * Font-Face Onload Script
- */
+/*! fontfaceonload - v0.1.0 - 2014-08-04
+ * https://github.com/zachleat/fontfaceonload
+ * Copyright (c) 2014 Zach Leatherman (@zachleat)
+ * MIT License */
 
 ;(function( win, doc ) {
+	"use strict";
+
 	var DELAY = 100,
 		TEST_STRING = 'AxmTYklsjo190QW',
 		TOLERANCE = 2, // px
@@ -21,6 +24,25 @@
 		serif,
 		dimensions,
 		appended = false;
+
+	function initialMeasurements( fontFamily ) {
+		dimensions = {
+			sansSerif: {
+				width: sansSerif.offsetWidth,
+				height: sansSerif.offsetHeight
+			},
+			serif: {
+				width: serif.offsetWidth,
+				height: serif.offsetHeight
+			}
+		};
+
+		// Make sure we set the new font-family after we take our initial dimensions:
+		// handles the case where FontFaceOnload is called after the font has already
+		// loaded.
+		sansSerif.style.fontFamily = fontFamily + ', ' + SANS_SERIF_FONTS;
+		serif.style.fontFamily = fontFamily + ', ' + SERIF_FONTS;
+	}
 
 	function load( fontFamily, options ) {
 		var startTime = new Date();
@@ -38,34 +60,19 @@
 			serif.innerHTML += options.glyphs;
 		}
 
-		if( !appended && doc.body ) {
-			appended = true;
-			doc.body.appendChild( parent );
-		}
-
-		dimensions = {
-			sansSerif: {
-				width: sansSerif.offsetWidth,
-				height: sansSerif.offsetHeight
-			},
-			serif: {
-				width: serif.offsetWidth,
-				height: serif.offsetHeight
-			}
-		};
-
-		// Make sure we set the new font-family after we take our initial dimensions:
-		// handles the case where FontFaceOnload is called after the font has already
-		// loaded.
-		sansSerif.style.fontFamily = fontFamily + ', ' + SANS_SERIF_FONTS;
-		serif.style.fontFamily = fontFamily + ', ' + SERIF_FONTS;
-
 		(function checkDimensions() {
-			if( Math.abs( dimensions.sansSerif.width - sansSerif.offsetWidth ) > TOLERANCE ||
-				Math.abs( dimensions.sansSerif.height - sansSerif.offsetHeight ) > TOLERANCE ||
-				Math.abs( dimensions.serif.width - serif.offsetWidth ) > TOLERANCE ||
-				Math.abs( dimensions.serif.height - serif.offsetHeight ) > TOLERANCE ) {
+			if( !appended && doc.body ) {
+				appended = true;
+				doc.body.appendChild( parent );
 
+				initialMeasurements( fontFamily );
+			}
+
+			if( appended && dimensions &&
+				( Math.abs( dimensions.sansSerif.width - sansSerif.offsetWidth ) > TOLERANCE ||
+					Math.abs( dimensions.sansSerif.height - sansSerif.offsetHeight ) > TOLERANCE ||
+					Math.abs( dimensions.serif.width - serif.offsetWidth ) > TOLERANCE ||
+					Math.abs( dimensions.serif.height - serif.offsetHeight ) > TOLERANCE ) ) {
 				options.success();
 			} else if( ( new Date() ).getTime() - startTime.getTime() > options.timeout ) {
 				options.error();
@@ -115,7 +122,6 @@
 
 	// intentional global
 	win.FontFaceOnload = FontFaceOnload;
-
 })( this, this.document );
 
 /*
