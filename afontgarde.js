@@ -3,7 +3,7 @@
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
 
-/*! fontfaceonload - v0.1.2 - 2014-10-29
+/*! fontfaceonload - v0.1.3 - 2014-10-29
  * https://github.com/zachleat/fontfaceonload
  * Copyright (c) 2014 Zach Leatherman (@zachleat)
  * MIT License */
@@ -45,8 +45,8 @@
 	};
 
 	FontFaceOnloadInstance.prototype.initialMeasurements = function ( fontFamily ) {
-		var sansSerif = this.sansSerif;
-		var serif = this.serif;
+		var sansSerif = this.sansSerif,
+			serif = this.serif;
 
 		this.dimensions = {
 			sansSerif: {
@@ -117,8 +117,8 @@
 	}; // end load()
 
 	FontFaceOnloadInstance.prototype.init = function( fontFamily, options ) {
-		var that = this;
-		var defaultOptions = {
+		var that = this,
+			defaultOptions = {
 				glyphs: '',
 				success: function() {},
 				error: function() {},
@@ -136,6 +136,7 @@
 			}
 		}
 
+		// For some reason this was failing on afontgarde + icon fonts.
 		if( !options.glyphs && "fonts" in doc ) {
 			doc.fonts.load( "1em " + fontFamily ).then(function() {
 				options.success();
