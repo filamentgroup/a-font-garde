@@ -1,9 +1,9 @@
-/*! afontgarde - v0.1.4 - 2014-08-04
+/*! afontgarde - v0.1.5 - 2014-10-29
  * https://github.com/filamentgroup/a-font-garde
  * Copyright (c) 2014 Filament Group c/o Zach Leatherman
  * MIT License */
 
-/*! fontfaceonload - v0.1.0 - 2014-08-04
+/*! fontfaceonload - v0.1.2 - 2014-10-29
  * https://github.com/zachleat/fontfaceonload
  * Copyright (c) 2014 Zach Leatherman (@zachleat)
  * MIT License */
@@ -18,15 +18,37 @@
 		SANS_SERIF_FONTS = 'sans-serif',
 		SERIF_FONTS = 'serif',
 
-		parent,
-		html = '<div style="font-family:%s;position:absolute;top:0;left:-9999px;font-size:48px">' + TEST_STRING + '</div>',
-		sansSerif,
-		serif,
-		dimensions,
-		appended = false;
+		// See https://github.com/typekit/webfontloader/blob/master/src/core/fontruler.js#L41
+		style = [
+			'display:block',
+			'position:absolute',
+			'top:-999px',
+			'left:-999px',
+			'font-size:300px',
+			'width:auto',
+			'height:auto',
+			'line-height:normal',
+			'margin:0',
+			'padding:0',
+			'font-variant:normal',
+			'white-space:nowrap',
+			'font-family:%s'
+		].join(';'),
+		html = '<div style="' + style + '">' + TEST_STRING + '</div>';
 
-	function initialMeasurements( fontFamily ) {
-		dimensions = {
+	var FontFaceOnloadInstance = function() {
+		this.appended = false;
+		this.dimensions = undefined;
+		this.serif = undefined;
+		this.sansSerif = undefined;
+		this.parent = undefined;
+	};
+
+	FontFaceOnloadInstance.prototype.initialMeasurements = function ( fontFamily ) {
+		var sansSerif = this.sansSerif;
+		var serif = this.serif;
+
+		this.dimensions = {
 			sansSerif: {
 				width: sansSerif.offsetWidth,
 				height: sansSerif.offsetHeight
@@ -42,18 +64,26 @@
 		// loaded.
 		sansSerif.style.fontFamily = fontFamily + ', ' + SANS_SERIF_FONTS;
 		serif.style.fontFamily = fontFamily + ', ' + SERIF_FONTS;
-	}
+	};
 
-	function load( fontFamily, options ) {
-		var startTime = new Date();
+	FontFaceOnloadInstance.prototype.load = function ( fontFamily, options ) {
+		var startTime = new Date(),
+			that = this,
+			serif = that.serif,
+			sansSerif = that.sansSerif,
+			parent = that.parent,
+			appended = that.appended,
+			dimensions = that.dimensions,
+			tolerance = options.tolerance || TOLERANCE,
+			delay = options.delay || DELAY;
 
 		if( !parent ) {
-			parent = doc.createElement( 'div' );
+			parent = that.parent = doc.createElement( 'div' );
 		}
 
 		parent.innerHTML = html.replace(/\%s/, SANS_SERIF_FONTS ) + html.replace(/\%s/, SERIF_FONTS );
-		sansSerif = parent.firstChild;
-		serif = sansSerif.nextSibling;
+		sansSerif = that.sansSerif = parent.firstChild;
+		serif = that.serif = sansSerif.nextSibling;
 
 		if( options.glyphs ) {
 			sansSerif.innerHTML += options.glyphs;
@@ -62,29 +92,32 @@
 
 		(function checkDimensions() {
 			if( !appended && doc.body ) {
-				appended = true;
+				appended = that.appended = true;
 				doc.body.appendChild( parent );
 
-				initialMeasurements( fontFamily );
+				that.initialMeasurements( fontFamily );
 			}
 
+			dimensions = that.dimensions;
+
 			if( appended && dimensions &&
-				( Math.abs( dimensions.sansSerif.width - sansSerif.offsetWidth ) > TOLERANCE ||
-					Math.abs( dimensions.sansSerif.height - sansSerif.offsetHeight ) > TOLERANCE ||
-					Math.abs( dimensions.serif.width - serif.offsetWidth ) > TOLERANCE ||
-					Math.abs( dimensions.serif.height - serif.offsetHeight ) > TOLERANCE ) ) {
+				( Math.abs( dimensions.sansSerif.width - sansSerif.offsetWidth ) > tolerance ||
+					Math.abs( dimensions.sansSerif.height - sansSerif.offsetHeight ) > tolerance ||
+					Math.abs( dimensions.serif.width - serif.offsetWidth ) > tolerance ||
+					Math.abs( dimensions.serif.height - serif.offsetHeight ) > tolerance ) ) {
 				options.success();
 			} else if( ( new Date() ).getTime() - startTime.getTime() > options.timeout ) {
 				options.error();
 			} else {
 				setTimeout(function() {
 					checkDimensions();
-				}, DELAY);
+				}, delay );
 			}
 		})();
-	} // end load()
+	}; // end load()
 
-	var FontFaceOnload = function( fontFamily, options ) {
+	FontFaceOnloadInstance.prototype.init = function( fontFamily, options ) {
+		var that = this;
 		var defaultOptions = {
 				glyphs: '',
 				success: function() {},
@@ -103,7 +136,7 @@
 			}
 		}
 
-		if( "fonts" in doc ) {
+		if( !options.glyphs && "fonts" in doc ) {
 			doc.fonts.load( "1em " + fontFamily ).then(function() {
 				options.success();
 
@@ -116,8 +149,15 @@
 				}, options.timeout );
 			}
 		} else {
-			load( fontFamily, options );
+			that.load( fontFamily, options );
 		}
+	};
+
+	var FontFaceOnload = function( fontFamily, options ) {
+		var instance = new FontFaceOnloadInstance();
+		instance.init(fontFamily, options);
+
+		return instance;
 	};
 
 	// intentional global
