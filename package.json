@@ -1,6 +1,6 @@
 {
   "name": "afontgarde",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "The safest way to use font icons.",
   "repository": {
     "type": "git",
@@ -13,17 +13,20 @@
   },
   "homepage": "https://github.com/filamentgroup/a-font-garde",
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.4.0",
-    "matchdep": "~0.1.2",
+    "grunt": "~0.4.5",
     "grunt-bytesize": "~0.1.1",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-replace": "~0.5.1",
-    "grunt-gh-pages": "~0.9.1"
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-gh-pages": "~0.10.0",
+    "grunt-replace": "~0.8.0",
+    "matchdep": "~0.3.0"
   },
   "config": {
     "cssprefix": "supports-",
     "iconclass": "icon"
+  },
+  "dependencies": {
+    "fontfaceonload": "^0.1.6"
   }
 }

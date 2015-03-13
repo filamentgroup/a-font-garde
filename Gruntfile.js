@@ -15,18 +15,14 @@ module.exports = function(grunt) {
 				},
 				src: 'Gruntfile.js'
 			},
-			lib: {
-				src: ['lib/fontfaceonload.js']
+			src: {
+				src: [ '<%= pkg.name %>.js' ]
 			}
 		},
 		watch: {
 			gruntfile: {
 				files: '<%= jshint.gruntfile.src %>',
 				tasks: ['jshint:gruntfile']
-			},
-			lib_test: {
-				files: '<%= jshint.lib.src %>',
-				tasks: ['jshint:lib']
 			},
 			src: {
 				files: [ '<%= concat.js.src %>', '<%= concat.css.src %>' ],
@@ -47,7 +43,7 @@ module.exports = function(grunt) {
 				banner: '<%= banner %>'
 			},
 			js: {
-				src: [ 'src/fontfaceonload.js', 'src/<%= pkg.name %>.tmpl.js' ],
+				src: [ 'node_modules/fontfaceonload/dist/fontfaceonload.js', 'src/<%= pkg.name %>.tmpl.js' ],
 				dest: '<%= pkg.name %>.js'
 			},
 			css: {
@@ -86,6 +82,6 @@ module.exports = function(grunt) {
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'concat', 'replace', 'bytesize:src']);
+	grunt.registerTask('default', ['concat', 'replace', 'jshint', 'bytesize:src']);
 
 };
