@@ -1,3 +1,5 @@
+:warning: This project is archived and the repository is no longer maintained. 
+
 # A Font Garde
 
 [![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
